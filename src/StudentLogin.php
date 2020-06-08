@@ -1,8 +1,28 @@
 <?php 
-    require_once "pdo_constructor.php";
+
+    require_once "config.php";
     
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = "";
+    $password = "";
+
+    if(!empty($_POST['username']) && !empty($_POST['password'])){
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $expected_password = "";
+
+        $stmt = $mysqli->prepare("SELECT password FROM login WHERE username = ?");
+        $stmt->bind_param("s", $username);   
+        $stmt->execute();
+        $stmt->store_result();
+        $stmt->bind_result($expected_password);
+        if($expected_password = $password){
+            echo "success";
+            header("location: StudentMain.php");
+        }else{
+            echo "incorrect username/password";
+        }
+    }
+   
 ?>
 
 <!DOCTYPE HTML>
