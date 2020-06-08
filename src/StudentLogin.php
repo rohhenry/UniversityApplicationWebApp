@@ -1,4 +1,10 @@
 <?php 
+    session_start();
+
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+        header("location: welcome.php");
+        exit;
+    }
 
     require_once "config.php";
     
@@ -16,7 +22,9 @@
         $stmt->store_result();
         $stmt->bind_result($expected_password);
         if($expected_password = $password){
-            echo "success";
+            session_start();
+            $_SESSION["loggedin"] = true;
+            $_SESSION["username"] = $username; 
             header("location: StudentMain.php");
         }else{
             echo "incorrect username/password";
