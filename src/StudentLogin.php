@@ -25,6 +25,7 @@
             session_start();
             $_SESSION["loggedin"] = true;
             $_SESSION["username"] = $username; 
+            $_SESSION["type"] = "Student";
             header("location: StudentMain.php");
         }else{
             echo "incorrect username/password";
@@ -35,6 +36,7 @@
 
 <!DOCTYPE HTML>
 <html>
+<div id="login_form">
 <form method="post">
     <p>Username:</p>
     <input type="text" name="username">
@@ -43,4 +45,5 @@
     <br>
     <input type="submit" value="Sign In">
 </form>
+</div>
 </html>

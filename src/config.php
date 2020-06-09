@@ -1,9 +1,5 @@
 <?php
 
-/* 
- * Uncomment this line for local development.
- * Comment out this line when uploading to the server.
- */
 $servername = "localhost";
 $username = "root";
 $password = "root";
