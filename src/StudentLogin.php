@@ -36,14 +36,18 @@
 
 <!DOCTYPE HTML>
 <html>
-<div id="login_form">
-<form method="post">
-    <p>Username:</p>
-    <input type="text" name="username">
-    <p for="password">Password:</p>
-    <input type="password" name="password">
-    <br>
-    <input type="submit" value="Sign In">
-</form>
-</div>
+<body>
+    <div class="slide_bg">
+        <div id="login_form">
+            <form method="post">
+                <p>Username:</p>
+                <input type="text" name="username">
+                <p for="password">Password:</p>
+                <input type="password" name="password">
+                <br>
+                <input type="submit" value="Sign In">
+            </form>
+        </div>
+    </div>
+</body>
 </html>
