@@ -1,8 +1,9 @@
 <?php
-include 'UAconnect.php';
+include 'C:\xampp\htdocs\UniversityApplicationWebApp\src\UAconnect.php';
+$conn = OpenCon();
 
-$a = $_POST['username'];
-$b = $_POST['password'];
+$a = $_GET['username'];
+$b = $_GET['password'];
 
 $sql = "INSERT INTO login (username, password)
 VALUES ($a,$b)";

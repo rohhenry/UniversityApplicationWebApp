@@ -3,14 +3,15 @@
 include 'C:\xampp\htdocs\UniversityApplicationWebApp\src\UAconnect.php';
 $conn = OpenCon();
 
-$a = $_POST['address'];
-$b = $_POST['postal_code'];
+$a = $_POST['phone_number'];
+$b = $_POST['address'];
+$c = $_POST['email'];
 
-$sql = "INSERT INTO student (contact_info_address, postal_code)
-VALUES ($a,$b)";
+$sql = "INSERT INTO student (phone_number, address, email)
+VALUES ($a,$b, $c)";
 
 if ($conn->query($sql) === TRUE) {
-    echo "New local address record created successfully";
+    echo "New contact info record created successfully";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
