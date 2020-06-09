@@ -2,7 +2,11 @@
     session_start();
 
     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-        header("location: welcome.php");
+        if(isset($_SESSION["type"]) && $_SESSION["type"] == "student"){
+            header("location: StudentMain.php");
+        } else {
+            header("location: RecruiterMain.php");
+        }
         exit;
     }
 
@@ -25,7 +29,7 @@
             session_start();
             $_SESSION["loggedin"] = true;
             $_SESSION["username"] = $username; 
-            $_SESSION["type"] = "Student";
+            $_SESSION["type"] = "student";
             header("location: StudentMain.php");
         }else{
             echo "incorrect username/password";
