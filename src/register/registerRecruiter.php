@@ -13,19 +13,19 @@ $g = $_GET['address'];
 $h = $_GET['postal_code'];
 $i = $_GET['university_name'];
 
-$conn->multi_query(" Many SQL queries ; "); // OK
-while ($conn->next_result()) {;} // flush multi_queries
-$conn->query(" INSERT INTO login (username, password) VALUES ($a,$b) "); // now executed!
-$conn->query(" INSERT INTO local_address (contact_info_address, postal_code) VALUES ($g,$h) "); // now executed!
-$conn->query(" INSERT INTO Contact_info (phone_number,address, email) VALUES ($f,$g, $e) "); // now executed!
-$conn->query(" INSERT INTO recruiter (id, name, university_name, contact_info_email, login_username) VALUES ($d,$c,$i, $e, $a)"); // now executed!
+$sql = " INSERT INTO login (username, password) VALUES ('$a','$b'); 
+ INSERT INTO local_address (contact_info_address, postal_code) VALUES ('$g','$h');
+ INSERT INTO Contact_info (phone_number,address, email) VALUES ('$f','$g', '$e');
+ INSERT INTO student (id, name, contact_info_email, login_username) VALUES ('$d','$c', 'i','$e', '$a');";
 
 
-if ($conn->query($sql) === TRUE) {
-    echo "New student record created successfully";
+if ($conn->multi_query($sql) === TRUE) {
+    echo "New recruiter record created successfully";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
+
+header("Location: ../Login.php");
 
 $conn->close();
 
