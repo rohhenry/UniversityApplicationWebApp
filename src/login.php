@@ -49,6 +49,7 @@
 
 <!DOCTYPE HTML>
 <html>
+<a href="src/registerStudent.html">Register Here</a>
 <div id="login_form">
 <form method="post">
     <p>Username:</p>
