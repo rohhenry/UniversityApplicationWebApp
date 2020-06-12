@@ -1,6 +1,6 @@
 <?php 
     session_start();
-
+    
     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
         if(isset($_SESSION["type"]) && $_SESSION["type"] == "student"){
             header("location: StudentMain.php");
@@ -25,10 +25,12 @@
         $stmt->execute();
         $stmt->store_result();
         $stmt->bind_result($expected_password);
-        if($expected_password = $password){
+        if(if $stmt->num_rows == 1 && $expected_password = $password){
             session_start();
             $_SESSION["loggedin"] = true;
-            $_SESSION["username"] = $username; 
+            $_SESSION["username"] = $username;
+            
+            
             $_SESSION["type"] = "student";
             header("location: StudentMain.php");
         }else{
