@@ -33,6 +33,8 @@
             
             $stmt = $mysqli->prepare("SELECT * from student where login_username = ?");
             $stmt->bind_param("s", $username);
+            $stmt->execute();
+            $stmt->store_result();
             if($stmt->num_rows == 1){
                 $_SESSION["type"] = "student";
                 header("location: StudentMain.php");
@@ -49,7 +51,7 @@
 
 <!DOCTYPE HTML>
 <html>
-<a href="src/registerStudent.html">Register Here</a>
+<a href="register/registerStudent.html">Register Here</a>
 <div id="login_form">
 <form method="post">
     <p>Username:</p>
