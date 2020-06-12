@@ -25,14 +25,21 @@
         $stmt->execute();
         $stmt->store_result();
         $stmt->bind_result($expected_password);
-        if(if $stmt->num_rows == 1 && $expected_password = $password){
+        if($stmt->num_rows == 1 && $expected_password = $password){
             session_start();
             $_SESSION["loggedin"] = true;
             $_SESSION["username"] = $username;
             
             
-            $_SESSION["type"] = "student";
-            header("location: StudentMain.php");
+            $stmt = $mysqli->prepare("SELECT * from student where login_username = ?");
+            $stmt->bind_param("s", $username);
+            if($stmt->num_rows == 1){
+                $_SESSION["type"] = "student";
+                header("location: StudentMain.php");
+            }else{
+                $_SESSION["type"] = "recruiter";
+                header("location: RecruiterMain.php");
+            }
         }else{
             echo "incorrect username/password";
         }
