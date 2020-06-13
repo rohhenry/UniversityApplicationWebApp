@@ -1,57 +1,9 @@
-
+<style>
 body {
-    --blue:#BAD7F0;
-    --pastelblue:#CFE2F3;
-    --purple:#9576B8;
-    --pastelpurp:#DCCCF4;
-    --pink:#EFB1B1;
-    --pastelpink:#F7DDE6;
-    --green:#B0DEBC;
-    --pastelgreen:#C6EFD1;
-    background:#fafafa;
-    margin:0px auto;
-    overflow-x:hidden;
-    overflow-y:auto;
-
+    background-image: url('Abstract-Ambient-Light-Background-Day-Blue.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
-#title {
-    width:100vw;
-    height:30vh;
-    position:relative;
-}
-#ead-in {
-    width:100%;
-    height:20vh;
-    position:absolute;
-    top:0px; left:0px;
-}
-.wave {
-    position: absolute;
-    opacity: .4;
-    width: 200px;
-    height: 180px;
-    margin-left: -20px;
-    margin-top: -30px;
-    border-radius: 43%;
-}
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    from { transform: rotate(360deg); }
-}
-.wave.-one {
-    animation: rotate 12s infinite linear;
-    opacity: .2;
-    background: #EFB1B1;
-}
-
-.wave.-two {
-    animation: rotate 5s infinite linear;
-    opacity: .15;
-    background: #9576B8;
-}
-
-.wave.-three {
-    animation: rotate 8s infinite linear;
-    background-color: #BAD7F0;
-}
+</style>
