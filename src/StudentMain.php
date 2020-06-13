@@ -11,16 +11,9 @@ Applied Universities:
 </html>
 
 <?php 
-    session_start();
     
-    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-        if(isset($_SESSION["type"]) && $_SESSION["type"] == "student"){
-            #header("location: StudentMain.php");
-        } else {
-            header("location: RecruiterMain.php");
-        }
-    }
-    
+    require_once "check_session.php";
+    validateSession("student");
     require_once "config.php";
     
     $username = $_SESSION["username"];

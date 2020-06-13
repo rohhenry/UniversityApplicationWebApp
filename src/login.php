@@ -7,7 +7,6 @@
         } else {
             header("location: RecruiterMain.php");
         }
-        exit;
     }
 
     require_once "config.php";
