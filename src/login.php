@@ -25,7 +25,7 @@
         $stmt->store_result();
         $stmt->bind_result($expected_password);
         $stmt->fetch();
-        if($stmt->num_rows == 1 && $expected_password = $password){
+        if($stmt->num_rows == 1 && $expected_password == $password){
             session_start();
             $_SESSION["loggedin"] = true;
             $_SESSION["username"] = $username;
