@@ -1,10 +1,12 @@
 .login_box {
+    position: fixed;
     left:40%;
-    top:40%;
+    top:35%;
     width: 450px;
-    height: 450px;
-    border: 2px solid #BAD7F0;
+    height: 300px;
+    border: 10px solid #CFE2F3;
     background-color: #CFE2F3;
+    border-radius: 5px;
 
 }
 
@@ -14,7 +16,7 @@
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
-    backface-visibility: hidden;
+   backface-visibility: hidden;
     animation: slideBg 60s linear infinite 0s;
     animation-timing-function: ease-in-out;
     background-image: url('../images/UBC.jpg');
