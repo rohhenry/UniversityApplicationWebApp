@@ -76,8 +76,8 @@
             </div>
             <div class="modal-body">
                 <h2> I am a </h2>
-                <button type="button" class="btn btn-primary" onClick="Javascript:window.location.href = 'register/registerStudent.html';"> Recruiter</button>
-                <button type="button" class="btn btn-primary" onClick="Javascript:window.location.href = 'register/registerRecruiter.html';" >Student</button>
+                <button type="button" class="btn btn-primary" onClick="Javascript:window.location.href = 'register/registerRecruiter.html';"> Recruiter</button>
+                <button type="button" class="btn btn-primary" onClick="Javascript:window.location.href = 'register/registerStudent.html';" >Student</button>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
