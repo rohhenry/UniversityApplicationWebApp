@@ -18,13 +18,13 @@
     if(!empty($_POST['username']) && !empty($_POST['password'])){
         $username = $_POST['username'];
         $password = $_POST['password'];
-        $expected_password = "";
 
         $stmt = $mysqli->prepare("SELECT password FROM login WHERE username = ?");
         $stmt->bind_param("s", $username);   
         $stmt->execute();
         $stmt->store_result();
         $stmt->bind_result($expected_password);
+        $stmt->fetch();
         if($stmt->num_rows == 1 && $expected_password = $password){
             session_start();
             $_SESSION["loggedin"] = true;
@@ -35,6 +35,7 @@
             $stmt->bind_param("s", $username);
             $stmt->execute();
             $stmt->store_result();
+
             if($stmt->num_rows == 1){
                 $_SESSION["type"] = "student";
                 header("location: StudentMain.php");
