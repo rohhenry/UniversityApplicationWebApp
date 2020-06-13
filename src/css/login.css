@@ -1,0 +1,52 @@
+.login_box {
+    left:40%;
+    top:40%;
+    width: 450px;
+    height: 450px;
+    border: 2px solid #BAD7F0;
+    background-color: #CFE2F3;
+
+}
+
+.slide_bg {
+    width:100%;
+    height: 100vh;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
+    animation: slideBg 60s linear infinite 0s;
+    animation-timing-function: ease-in-out;
+    background-image: url('../images/UBC.jpg');
+
+}
+
+@keyframes slideBg {
+    0% {
+        background-image: url('../images/UBC.jpg');
+    }
+    15% {
+        background-image: url('../images/1jfqngoq.jpeg');
+    }
+    30% {
+        background-image: url('../images/14485061_web1_181120-SUL-SFUSurreyBuilding.02.jpg');
+    }
+    40% {
+        background-image: url('../images/34037-115753.jpg');
+    }
+    50% {
+        background-image: url('../images/u-of-a.png');
+    }
+    60% {
+        background-image: url('../images/undergraduate-admission-banner.png');
+    }
+    70% {
+        background-image: url('../images/queens_belfast00.jpg');
+    }
+    85% {
+        background-image: url('../images/UofT.jpg');
+    }
+    100% {
+        background-image: url('../images/University-of-Waterloo-1080x675.jpg');
+    }
+}
