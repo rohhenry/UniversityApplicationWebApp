@@ -14,6 +14,7 @@ Applied Universities:
     
     require_once "check_session.php";
     validateSession("student");
+    
     require_once "config.php";
     
     $username = $_SESSION["username"];
