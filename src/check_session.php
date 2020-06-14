@@ -1,5 +1,4 @@
 <?php
-
     session_start();
 
     function validateSession($type, $redirect="login.php"){
