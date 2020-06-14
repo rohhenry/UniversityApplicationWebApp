@@ -11,7 +11,7 @@
         
     function displayApplications($status){
         global $mysqli, $username;
-        $sql = "SELECT university_name, faculty_name, accepted 
+        $sql = "SELECT university_name, faculty_name 
                 FROM application, student 
                 WHERE application.student_id = student.id
                 AND application.offer = ? 
@@ -19,9 +19,9 @@
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param("ss",$status, $username);   
         $stmt->execute();
-        $stmt->bind_result($university_name, $faculty_name, $accepted);
+        $stmt->bind_result($university_name, $faculty_name);
         while($stmt->fetch()){
-            echo "<b> $university_name $faculty_name $accepted </b><br>";
+            echo "<b> $university_name $faculty_name</b><br>";
         }   
     }
 
