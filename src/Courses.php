@@ -109,7 +109,6 @@
     <li><a href='logout.php'>Logout</a></li>
     <li><a href='Courses.php'>Add/Edit Courses</a></li>
     <li><a href='ApplyToUniversity.php'>Apply To University</a></li>
-    <li><a href='ModifyOffer.php'>Manage the Offer</a></li>
 </ul>
 <h2>Courses: </h2>
 
