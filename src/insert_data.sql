@@ -1,11 +1,11 @@
 INSERT INTO 
 University(name)
 VALUES
-('AAA'),
-('BBB'),
-('CCC'),
-('DDD'),
-('EEE');
+('UBC'),
+('SFU'),
+('UOT'),
+('MIT'),
+('UOW');
 
 INSERT INTO 
 Login (username, password) 
@@ -32,21 +32,21 @@ VALUES
 INSERT INTO
  Course (number ,department ,name)
  VALUES
-('001','AAAA','MATH'),
-('002','BBBB', 'ENGLISH'),
-('003','CCCC','MUSIC'),
-('004','DDDD','PHYSICS'),
-('005','EEEE','CHEMISTRY');
+('001','MATH','CALCULUS 1'),
+('002','ENGL', 'Kafka Analysis'),
+('003','MUSC','Advanced Scales'),
+('004','PHYS','Quantum Mechanics'),
+('005','CHEM','Orbitals');
 
 
 INSERT INTO 
 Faculty (name, university_name, application_Instructions)
 VALUES
- 	('Faculty of Education', 'AAA', 'none'),
-('Faculty of Science', 'BBB', 'CH12, PHYS12, MATH12'),
-('Faculty of Art','CCC','none'),
-('Faculty of Medicine','DDD','please contact direct to us'),
-('Department of Dentistry','EEE','please contact direct to us');
+('Faculty of Education', 'UBC', 'none'),
+('Faculty of Science', 'SFU', 'CH12, PHYS12, MATH12'),
+('Faculty of Art','UOT','none'),
+('Faculty of Medicine','MIT','please contact direct to us'),
+('Department of Dentistry','UOW','please contact direct to us');
 
 INSERT INTO
 	Local_Address(contact_info_address, postal_code)
@@ -89,11 +89,11 @@ VALUES
 INSERT INTO 
 Recruiter (id ,name ,university_name, contact_info_email,login_username) 
 VALUES
-('R1','NAME1','AAA','A@mail.com','A'),
-('R2','NAME2','BBB','B@mail.com','B'),
-('R3','NAME3','CCC','C@mail.com','C'),
-('R4','NAME4','DDD','D@mail.com','D'),
-('R5','NAME5','EEE','E@mail.com','E');
+('R1','NAME1','UBC','A@mail.com','A'),
+('R2','NAME2','SFU','B@mail.com','B'),
+('R3','NAME3','UOT','C@mail.com','C'),
+('R4','NAME4','MIT','D@mail.com','D'),
+('R5','NAME5','UOW','E@mail.com','E');
 
 
 
@@ -115,7 +115,7 @@ VALUES
 INSERT INTO 
 	Agency(name)
 VALUES
-	('agency1'),
+('agency1'),
 ('agency2'),
 ('agency3'),
 ('agency4'),
@@ -134,39 +134,39 @@ VALUES
 INSERT INTO
 	TransferStudent(university_name ,student_id)
 VALUES
-	('AAA','S1'),
-	('BBB','S2'),
-	('CCC','S3'),
-	('DDD','S4'),
+	('UBC','S1'),
+	('SFU','S2'),
+	('UOT','S3'),
+	('MIT','S4'),
 	('EEE','S5');
 
 INSERT INTO
 	Taken(mark,year,student_id,course_number,course_department)
 VALUES
-	('90','2019','S1','001','AAAA'),
-	('90','2019','S2','001','AAAA'),
-	('90','2019','S3','001','AAAA'),
-	('90','2019','S4','001','AAAA'),
-	('90','2019','S5','001','AAAA');
+	('90','2019','S1','001','MATH'),
+	('90','2019','S2','001','MATH'),
+	('90','2019','S3','001','MATH'),
+	('90','2019','S4','001','MATH'),
+	('90','2019','S5','001','MATH');
 
 INSERT INTO
 	Application(id,text,offer,accepted,university_name,student_id)
 VALUES
-	('A1','text1','offer1','pending','AAA','S1'),
-	('A2','text2','offer2','pending','AAA','S2'),
-	('A3','text3','offer3','pending','BBB','S3'),
-	('A4','text4','offer4','pending','DDD','S4'),
-	('A5','text5','offer5','pending','CCC','S5');
+	('A1','text1','accepted','pending','UBC','S1'),
+	('A2','text2','rejected','pending','UBC','S2'),
+	('A3','text3','pending','pending','SFU','S3'),
+	('A4','text4','pending','pending','MIT','S4'),
+	('A5','text5','pending','pending','UOT','S5');
 
 
 INSERT INTO
 	Send(university_name ,application_id ,student_id)
 VALUES
-	('AAA','A1','S1'),
-	('BBB','A2','S2'),
-	('CCC','A3','S3'),
-	('DDD','A4','S4'),
-	('EEE','A5','S5');
+	('UBC','A1','S1'),
+	('SFU','A2','S2'),
+	('UOT','A3','S3'),
+	('MIT','A4','S4'),
+	('UOW','A5','S5');
 
 INSERT INTO
 	Review(recruiter_id,application_id)

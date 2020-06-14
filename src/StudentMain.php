@@ -18,9 +18,9 @@
 
 
     $join = "SELECT student.id, student.name, student.contact_info_email, student.login_username
-FROM student, login WHERE login.username = student.login_username AND login.username = '$username'";
+    FROM student, login WHERE login.username = student.login_username AND login.username = '$username'";
 
-$result = $mysqli->query($join) -> fetch_assoc();
+    $result = $mysqli->query($join) -> fetch_assoc();
 
    
 ?>

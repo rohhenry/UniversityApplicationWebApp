@@ -9,7 +9,7 @@
 
     function displayCoursesTaken(){
         global $mysqli, $username; 
-        $sql = "SELECT Course.name, Taken.mark 
+        $sql = "SELECT Course.department, Course.number, Course.name, Taken.mark 
                 FROM Course, Taken, Student
                 WHERE Course.number = Taken.course_number 
                 AND Course.department = Taken.course_department
@@ -19,9 +19,9 @@
         $stmt->bind_param("s", $username);
         $stmt->execute();
         #$stmt->store_result();
-        $stmt->bind_result($course_name, $mark);
+        $stmt->bind_result($course_department, $course_number, $course_name, $mark);
         while($stmt->fetch()){
-            echo "<b> $course_name, $mark </b><br>";
+            echo "<b> $course_department, $course_number, $course_name, $mark </b><br>";
         }
     }
 
