@@ -113,11 +113,15 @@ text varchar(20),
 offer varchar(20),
 accepted varchar(20),
 university_name varchar(20),
+faculty_name varchar(20),
 student_id varchar(20),
 PRIMARY KEY(id),
 FOREIGN KEY(University_name) REFERENCES University(name) 
 ON DELETE CASCADE
 ON UPDATE CASCADE,
+FOREIGN KEY(faculty_name, university_name) REFERENCES Faculty(name, university_name)
+ON DELETE CASCADE
+ON UPDATE CASCADE, 
 FOREIGN KEY(student_id) REFERENCES Student(id) 
 ON DELETE CASCADE
 ON UPDATE CASCADE

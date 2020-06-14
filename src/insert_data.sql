@@ -138,7 +138,7 @@ VALUES
 	('SFU','S2'),
 	('UOT','S3'),
 	('MIT','S4'),
-	('EEE','S5');
+	('UOW','S5');
 
 INSERT INTO
 	Taken(mark,year,student_id,course_number,course_department)
@@ -150,13 +150,13 @@ VALUES
 	('90','2019','S5','001','MATH');
 
 INSERT INTO
-	Application(id,text,offer,accepted,university_name,student_id)
+	Application(id,text,offer,accepted,university_name, faculty_name, student_id)
 VALUES
-	('A1','text1','accepted','pending','UBC','S1'),
-	('A2','text2','rejected','pending','UBC','S2'),
-	('A3','text3','pending','pending','SFU','S3'),
-	('A4','text4','pending','pending','MIT','S4'),
-	('A5','text5','pending','pending','UOT','S5');
+	('A1','text1','accepted','pending','UBC','Faculty of Education','S1'),
+	('A2','text2','rejected','pending','UOW','Department of Dentistry','S1'),
+	('A3','text3','pending','pending','SFU','Faculty of Science','S1'),
+	('A4','text4','pending','pending','MIT','Faculty of Medicine','S1'),
+	('A5','text5','pending','pending','UOT','Faculty of Art','S2');
 
 
 INSERT INTO
