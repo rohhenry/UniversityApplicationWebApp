@@ -101,21 +101,30 @@
     <h2>---Student Info---</h2>
     <span>Student Name:</span> <?php echo $result['name']; ?>
     <br>
+    <br>
     <span>E-mail:</span> <?php echo $result['contact_info_email']; ?>
+    <br>
     <br>
     <span>Student ID:</span> <?php echo $result['id']; ?>
     <br>
+    <br>
     <span>Student username:</span> <?php echo $result['login_username']; ?>
+    <br>
     <br>
     Pending Applications:
     <br>
     <?php displayApplications("pending")?>
+    <br>
+    <br>
     Applications Given Offer: 
     <br>
     <?php displayApplications("accepted")?>
+    <br>
+    <br>
     Rejected Applications:
     <br>
     <?php displayApplications("rejected")?>
+    <br>
     <br>
 </div>
 
