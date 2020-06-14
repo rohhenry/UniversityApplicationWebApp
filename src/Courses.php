@@ -77,6 +77,7 @@
 <?php displayCoursesTaken()?>
 <form method="post">
     <select name="course">
+    <option selected hidden>Select Course</option>
     <?php insertOptions()?>
     </select>
     <!-- Number
