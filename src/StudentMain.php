@@ -4,7 +4,7 @@
 <br>
 <a href='Courses.php'>Add/Edit Courses</a>
 <br>
-<a href='ApplyToUniversity.php'>Apply To University</a>
+<a href='applyToUniversity.php'>Apply To University</a>
 <br>
 Applied Universities:
 <br>
