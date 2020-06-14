@@ -18,7 +18,7 @@
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param("s", $username);
         $stmt->execute();
-        $stmt->store_result();
+        #$stmt->store_result();
         $stmt->bind_result($course_name, $mark);
         while($stmt->fetch()){
             echo "<b> $course_name, $mark </b><br>";
@@ -26,13 +26,15 @@
     }
 
     function addCourseTaken(){
-        
         global $mysqli, $username; 
 
         $mark = $_POST['mark'];
         $year = $_POST['year'];
-        $course_number = $_POST['number'];
-        $course_department = $_POST['department'];
+
+        $course = $_POST['course'];
+        $course_explode = explode('|', $course);
+        $course_number = $course_explode[0];
+        $course_department = $course_explode[1];
 
         
         $sql = "INSERT INTO Taken 
@@ -48,8 +50,22 @@
         }
     }
 
-    if(isset($_POST['submit'])){
+    if(isset($_POST['addCourse'])){
         addCourseTaken();
+    }
+
+    function insertOptions(){
+        global $mysqli, $username;
+
+        $sql = "SELECT Course.number, Course.department, Course.name 
+                FROM Course";
+        $stmt = $mysqli->prepare($sql);
+        $stmt->execute();
+        $stmt->bind_result($number, $department, $name);
+        while($stmt->fetch()){
+            echo "<option value='$number|$department'> $department $number: $name </option>";
+        }
+
     }
 ?>
 
@@ -58,19 +74,21 @@
 <h1>Courses: </h1>
 <br>
 <h2>Name, Mark</h2>
-<?php displayCoursesTaken() 
-?>
+<?php displayCoursesTaken()?>
 <form method="post">
-    Number
+    <select name="course">
+    <?php insertOptions()?>
+    </select>
+    <!-- Number
     <input type="text" name="number">
     Department
     <input type="text" name="department">
     Name
-    <input type="text" name="name">
-    Year
+    <input type="text" name="name"> -->
+    Year Taken
     <input type="text" name="year">
     Mark
     <input type="text" name="mark">
-    <input type="submit" value="Add Course" name = "submit">
+    <input type="submit" value="Add Course" name = "addCourse">
 </form>
 </html>
