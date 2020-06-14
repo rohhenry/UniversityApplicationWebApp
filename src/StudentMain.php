@@ -8,11 +8,22 @@
     require_once "config.php";
     
     $username = $_SESSION["username"];
-    $stmt = $mysqli->prepare("SELECT university_name, accepted FROM application, student WHERE application.student_id = student.id AND student.login_username = ?");
-    $stmt->bind_param("s", $username);   
-    $stmt->execute();
-    $stmt->store_result();
-
+        
+    function displayApplications($status){
+        global $mysqli, $username;
+        $sql = "SELECT university_name, faculty_name, accepted 
+                FROM application, student 
+                WHERE application.student_id = student.id
+                AND application.offer = ? 
+                AND student.login_username = ?";
+        $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param("ss",$status, $username);   
+        $stmt->execute();
+        $stmt->bind_result($university_name, $faculty_name, $accepted);
+        while($stmt->fetch()){
+            echo "<b> $university_name $faculty_name $accepted </b><br>";
+        }   
+    }
 
     #elisa update
 
@@ -96,13 +107,15 @@
     <br>
     <span>Student username:</span> <?php echo $result['login_username']; ?>
     <br>
-    <span>University have applied:</span> <?php
-    $stmt->bind_result($university_name, $accepted);
-    while($stmt->fetch()){
-        echo "<b>". $university_name. " ".  $accepted . "</b>";
-    }
-    ?>
+    Pending Applications:
     <br>
+    <?php displayApplications("pending")?>
+    Applications Given Offer: 
+    <br>
+    <?php displayApplications("accepted")?>
+    Rejected Applications:
+    <br>
+    <?php displayApplications("rejected")?>
     <br>
 </div>
 
