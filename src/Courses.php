@@ -71,14 +71,58 @@
 
 <!DOCTYPE html>
 <html>
-<h1>Courses: </h1>
-<br>
-<h2>Name, Mark</h2>
+<style>
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 5px;
+        overflow: hidden;
+        background-color: lightskyblue;
+    }
+
+    li {
+        float: left;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover {
+        background-color: darkgray;
+    }
+    body {
+        background-image: url('book_750xx2290-1290-0-235.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+
+</style>
+
+<ul>
+    <li><a href='logout.php'>Logout</a></li>
+    <li><a href='Courses.php'>Add/Edit Courses</a></li>
+    <li><a href='ApplyToUniversity.php'>Apply To University</a></li>
+    <li><a href='ModifyOffer.php'>Manage the Offer</a></li>
+</ul>
+<h2>Courses: </h2>
+
 <?php displayCoursesTaken()?>
+<br>
+<br>
 <form method="post">
     <select name="course">
     <?php insertOptions()?>
+
     </select>
+
+
     <!-- Number
     <input type="text" name="number">
     Department
