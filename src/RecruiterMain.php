@@ -1,5 +1,4 @@
 
-
 <?php
 
 require_once "check_session.php";
