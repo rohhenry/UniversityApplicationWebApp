@@ -5,13 +5,6 @@ validateSession("student");
 require_once "config.php";
 $username = $_SESSION["username"];
 
-$join = "SELECT student.id, student.name, student.contact_info_email, student.login_username
-    FROM student, login WHERE login.username = student.login_username AND login.username = '$username'";
-
-$result = $mysqli->query($join) -> fetch_assoc();
-
-$student_id = $result['id'];
-
 
 function getUniversityNotApplied()
 {
@@ -29,23 +22,41 @@ function getUniversityNotApplied()
 }
 
 function getAppId(){
-    STATIC $application_id = 1000;
+    STATIC $application_id = 2000;
     $application_id++;
-    return $application_id;
+    $aa = "A";
+    return ($aa.$application_id);
 }
 
+function displayTable(){
+    global $mysqli, $username;
+
+    $sql = "SELECT f.name, f.university_name, f.application_instructions 
+                FROM faculty f order by f.university_name" ;
+    $stmt = $mysqli->prepare($sql);
+    $stmt->execute();
+    $stmt->bind_result($faculty, $university, $instruction);
+    while($stmt->fetch()){
+        echo "<tr>";
+        echo "<td>  $university </td> <td> $faculty </td> <td> $instruction</td>" ;
+        echo "</tr>";
+    }
+}
+
+
 function applyUniversity() {
-    global $mysqli, $username, $student_id;
+    global $mysqli, $username, $university_name;
 
 
-    $apply = $_POST['university'];
-    $aid = 'A' + getAppId();
-    $text = '';
+
+    $aid = "A";
+    $aid .=  getAppId();
+    $text = $_POST['text'];
     $offer = 'pending';
     $accepted = 'pending';
-    $name_explode = explode('|', $apply);
-    $university_name = $name_explode[0];
-    $faculty_name = $name_explode[1];
+    $university_name = $_POST['university'];
+    $faculty_name = $_POST['faculty'];
+
 
     $sql = "INSERT INTO APPLICATION 
                 SELECT ?, ?, ?, ?, ?, ? ,Student.id
@@ -56,7 +67,9 @@ function applyUniversity() {
     if($stmt->execute()){
         echo 'success';
     }else{
+
         echo 'failure';
+
     }
 }
 
@@ -64,40 +77,72 @@ if(isset($_POST['apply'])){
     applyUniversity();
 }
 
-function insertOptions(){
-    global $mysqli, $username;
-
-    $sql = "SELECT f.name, f.university_name 
-                FROM faculty f order by f.university_name" ;
-    $stmt = $mysqli->prepare($sql);
-    $stmt->execute();
-    $stmt->bind_result($faculty, $university);
-    while($stmt->fetch()){
-        echo "<option value=$university|$faculty> $university: $faculty </option>";
-    }
-
-}
 
 ?>
 
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Apply University</title>
+    <link rel="stylesheet" href="css/applyUni.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+
 <a href='logout.php'>Logout</a>
 <br>
 <a href='Courses.php'>Add/Edit Courses</a>
 <br>
 <a href='applyToUniversity.php'>Apply To University</a>
 <br>
-Applied Universities:
-<?php getUniversityNotApplied();?>
 <br>
+<div class = apply_box>
 <form method="post">
-    <select name="university">
-        <option selected hidden>Select Option</option>
-        <?php insertOptions()?>
-
-    </select>
-
-    <input type="submit" value="apply" name = "apply">
+    <div class="form-group">
+        <label for="university">University</label>
+        <input name="university" type="university" class="form-control" id="university" placeholder="university">
+    </div>
+    <div class="form-group">
+        <label for="faculty">Faculty</label>
+        <input name= "faculty" type="faculty" class="form-control" id="faculty" placeholder="faculty">
+    </div>
+    <div class="form-group">
+        <label for="text">Answer for Faculty Specific Questions</label>
+        <textarea class="form-control" id="text" rows="3"></textarea>
+    </div>
+    <input class="btn btn-info" type="submit" value="apply">
 </form>
+</div>
+
+
+
+        <div class = "uniTable">
+            <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th class="th-sm">University
+
+                </th>
+                <th class="th-sm">Faculty
+
+                </th>
+                <th class="th-sm">Instruction
+
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php displayTable();?>
+            </tbody>
+            </table>
+        </div>
+<br>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
 </html>

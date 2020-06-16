@@ -1,0 +1,15 @@
+
+
+.uniTable {
+    overflow:hidden;
+    overflow-y: scroll;
+    height: 500px;
+    width: 60%;
+    padding: 10px;
+}
+
+.apply_box {
+    padding: 10px;
+    width: 60%;
+}
+
