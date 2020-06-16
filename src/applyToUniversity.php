@@ -38,12 +38,14 @@ function applyUniversity() {
     global $mysqli, $username, $student_id;
 
 
-    $apply = $_POST['apply'];
+    $apply = $_POST['university'];
     $aid = 'A' + getAppId();
     $text = '';
     $offer = 'pending';
     $accepted = 'pending';
-    $university_name =
+    $name_explode = explode('|', $apply);
+    $university_name = $name_explode[0];
+    $faculty_name = $name_explode[1];
 
     $sql = "INSERT INTO APPLICATION 
                 SELECT ?, ?, ?, ?, ?, ? ,Student.id
@@ -66,12 +68,12 @@ function insertOptions(){
     global $mysqli, $username;
 
     $sql = "SELECT f.name, f.university_name 
-                FROM faculty";
+                FROM faculty f order by f.university_name" ;
     $stmt = $mysqli->prepare($sql);
     $stmt->execute();
     $stmt->bind_result($faculty, $university);
     while($stmt->fetch()){
-        echo "<option value='university_faculty'> $university: $faculty </option>";
+        echo "<option value=$university|$faculty> $university: $faculty </option>";
     }
 
 }
@@ -90,12 +92,12 @@ Applied Universities:
 <?php getUniversityNotApplied();?>
 <br>
 <form method="post">
-    <select name="course">
+    <select name="university">
         <option selected hidden>Select Option</option>
         <?php insertOptions()?>
 
     </select>
 
-    <input type="submit" value="Apply" name = "apply">
+    <input type="submit" value="apply" name = "apply">
 </form>
 </html>
