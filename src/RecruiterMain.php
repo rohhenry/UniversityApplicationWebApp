@@ -27,7 +27,7 @@ function displayApplications($offer, $accepted){
 
 function displayApplicationsToReview(){
     global $mysqli, $username;
-    $sql = "SELECT application.university_name, application.faculty_name, application.student_id
+    $sql = "SELECT application.university_name, application.faculty_name, application.id
             FROM application, recruiter
             WHERE recruiter.login_username = ?
             AND application.university_name = recruiter.university_name

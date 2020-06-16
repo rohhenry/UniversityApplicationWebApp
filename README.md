@@ -7,3 +7,4 @@ It contains the website source code including Javascript, html, css, sql, and ph
 # The source code:
 The source code for this project can be found in the folder: src. All the Javascript, html, php, and sql files directly available are the code for the content of the website. 
 
+We used vanilla html, css, php and a bit of bootstrap for the webapp. 
