@@ -1,5 +1,3 @@
-
-
 <?php
     
     require_once "check_session.php";
@@ -9,20 +7,60 @@
     
     $username = $_SESSION["username"];
         
-    function displayApplications($status){
+    function displayApplications($offer, $accepted){
         global $mysqli, $username;
         $sql = "SELECT university_name, faculty_name 
                 FROM application, student 
                 WHERE application.student_id = student.id
                 AND application.offer = ? 
+                AND application.accepted = ?
                 AND student.login_username = ?";
         $stmt = $mysqli->prepare($sql);
-        $stmt->bind_param("ss",$status, $username);   
+        $stmt->bind_param("sss",$offer,$accepted, $username);   
         $stmt->execute();
         $stmt->bind_result($university_name, $faculty_name);
         while($stmt->fetch()){
             echo "<b> $university_name $faculty_name</b><br>";
         }   
+    }
+
+    function displayOffers(){
+        global $mysqli, $username;
+        $sql = "SELECT university_name, faculty_name, application.id
+                FROM application, student 
+                WHERE application.student_id = student.id
+                AND application.offer = 'accepted'
+                AND application.accepted = 'pending'
+                AND student.login_username = ?";
+        $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param("s", $username);   
+        $stmt->execute();
+        $stmt->bind_result($university_name, $faculty_name, $id);
+        echo '<form method="post">';
+        while($stmt->fetch()){
+            echo "<b> $university_name $faculty_name</b> 
+            <button type=\"submit\" value=$id name=\"Accept\" >Accept</button>
+            <button type=\"submit\" value=$id name=\"Reject\" >Reject</button>
+            <br>";
+        }   
+        echo '</form>';
+    }
+
+    function updateAccepted($id, $option){
+        global $mysqli, $username;
+        $sql = "UPDATE application SET accepted = ? WHERE id = ?";
+        $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param("ss", $option, $id);   
+        $stmt->execute();
+    }
+    
+    if(isset($_POST['Accept'])){
+        $id = $_POST['Accept'];
+        updateAccepted($id, 'accepted');
+
+    }else if(isset($_POST['Reject'])){
+        $id = $_POST['Reject'];
+        updateAccepted($id, 'rejected');
     }
 
     #elisa update
@@ -94,29 +132,39 @@
     <li><a href='logout.php'>Logout</a></li>
     <li><a href='Courses.php'>Add/Edit Courses</a></li>
     <li><a href='ApplyToUniversity.php'>Apply To University</a></li>
-    <li><a href='ModifyOffer.php'>Manage the Offer</a></li>
 </ul>
 
 <div class="form">
     <h2>---Student Info---</h2>
     <span>Student Name:</span> <?php echo $result['name']; ?>
     <br>
+    <br>
     <span>E-mail:</span> <?php echo $result['contact_info_email']; ?>
+    <br>
     <br>
     <span>Student ID:</span> <?php echo $result['id']; ?>
     <br>
+    <br>
     <span>Student username:</span> <?php echo $result['login_username']; ?>
+    <br>
     <br>
     Pending Applications:
     <br>
-    <?php displayApplications("pending")?>
-    Applications Given Offer: 
+    <?php displayApplications("pending", "pending")?>
+    Offers: 
     <br>
-    <?php displayApplications("accepted")?>
-    Rejected Applications:
+    <?php displayOffers("accepted", "pending")?>
+    No Offers:
     <br>
-    <?php displayApplications("rejected")?>
+    <?php displayApplications("rejected", "pending")?>
     <br>
+    Accepted Offers:
+    <br>
+    <?php displayApplications("accepted", "accepted")?>
+    Rejected Offers:
+    <br>
+    <?php displayApplications("accepted", "rejected")?>
+        
 </div>
 
 
