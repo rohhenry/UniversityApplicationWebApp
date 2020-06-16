@@ -1,4 +1,3 @@
-
 <?php
 //include 'C:\xampp\htdocs\UniversityApplicationWebApp\src\UAconnect.php';
 include "..\config.php";
@@ -16,17 +15,17 @@ function insertOptions(){
     }
 
 }
-function addRecruiter()
-{
-    $a = $_GET['username'];
-    $b = $_GET['password'];
-    $c = $_GET['recruiter_name'];
-    $d = $_GET['recruiter_id'];
-    $e = $_GET['email'];
-    $f = $_GET['phone_number'];
-    $g = $_GET['address'];
-    $h = $_GET['postal_code'];
-    $i = $_GET['university_name'];
+function addRecruiter(){
+    global $mysqli;
+    $a = $_POST['username'];
+    $b = $_POST['password'];
+    $c = $_POST['recruiter_name'];
+    $d = $_POST['recruiter_id'];
+    $e = $_POST['email'];
+    $f = $_POST['phone_number'];
+    $g = $_POST['address'];
+    $h = $_POST['postal_code'];
+    $i = $_POST['university_name'];
 
     $sql = " INSERT INTO login (username, password) VALUES ('$a','$b'); 
  INSERT INTO local_address (contact_info_address, postal_code) VALUES ('$g','$h');
@@ -116,12 +115,12 @@ if(isset($_POST['submit'])){
             <input type="text" class="form-control" name="recruiter_id" id="recruiter_id" placeholder="">
         </div>
         <div class="form-group">
-            <select class="form-control form-control">
+            <label for="university_name">University Name</label>
+
+            <select class="form-control form-control" name="university_name">
                 <option selected hidden>Select University you affiliated to </option>
                 <?php insertOptions()?>
             </select>
-            <!--        <label for="university_name">University Name</label>-->
-            <!--        <input type="text" class="form-control" name="university_name" id="university_name" placeholder="">-->
         </div>
 
         <button type="submit" class="btn btn-primary" name ="submit">Sign in</button>
@@ -130,6 +129,3 @@ if(isset($_POST['submit'])){
 
 </body>
 </html>
-
-
-
