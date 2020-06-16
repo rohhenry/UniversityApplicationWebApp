@@ -35,21 +35,22 @@ function getAppId(){
 }
 
 function applyUniversity() {
+    global $mysqli, $username, $student_id;
 
 
-
-    $course = $_POST['course'];
-    $course_explode = explode('|', $course);
-    $course_number = $course_explode[0];
-    $course_department = $course_explode[1];
-
+    $apply = $_POST['apply'];
+    $aid = 'A' + getAppId();
+    $text = '';
+    $offer = 'pending';
+    $accepted = 'pending';
+    $university_name =
 
     $sql = "INSERT INTO APPLICATION 
-                SELECT ?, ?, Student.id, ?, ?
+                SELECT ?, ?, ?, ?, ?, ? ,Student.id
                 FROM Student
                 WHERE Student.login_username = ?";
     $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param("sssss", $mark, $year, $course_number, $course_department, $username);
+    $stmt->bind_param("sssssss", $aid, $text, $offer, $accepted, $university_name, $faculty_name, $username);
     if($stmt->execute()){
         echo 'success';
     }else{
@@ -58,7 +59,7 @@ function applyUniversity() {
 }
 
 if(isset($_POST['apply'])){
-    addCourseTaken();
+    applyUniversity();
 }
 
 function insertOptions(){
@@ -70,7 +71,7 @@ function insertOptions(){
     $stmt->execute();
     $stmt->bind_result($faculty, $university);
     while($stmt->fetch()){
-        echo "<option value='$number|$department'> $university: $faculty </option>";
+        echo "<option value='university_faculty'> $university: $faculty </option>";
     }
 
 }
@@ -88,4 +89,13 @@ function insertOptions(){
 Applied Universities:
 <?php getUniversityNotApplied();?>
 <br>
+<form method="post">
+    <select name="course">
+        <option selected hidden>Select Option</option>
+        <?php insertOptions()?>
+
+    </select>
+
+    <input type="submit" value="Apply" name = "apply">
+</form>
 </html>
