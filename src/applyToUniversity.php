@@ -39,7 +39,8 @@ function applyUniversity() {
 
 
     $apply = $_POST['university'];
-    $aid = 'A' + getAppId();
+    $aid = "A";
+    $aid .= getAppId();
     $text = '';
     $offer = 'pending';
     $accepted = 'pending';
@@ -88,7 +89,9 @@ function insertOptions(){
 <br>
 <a href='applyToUniversity.php'>Apply To University</a>
 <br>
-Universities Not Applied To:
+<a href='StudentMain.php'>Student Main</a>
+<br>
+Applied Universities:
 <?php getUniversityNotApplied();?>
 <br>
 <form method="post">
