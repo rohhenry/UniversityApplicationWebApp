@@ -40,26 +40,9 @@ function displayApplicationsToReview(){
     echo '<form method="post" action="ReviewApplication.php">';
     while($stmt->fetch()){
         echo "<b> $university_name $faculty_name</b> 
-            <button type=\"submit\" value=$id name=\"Review\" >Review</button><br>";
+              <button name=\"Review\" type=\"submit\" value=\"$id\">Review</button><br>";
     }
     echo '</form>';
-}
-
-function updateAccepted($id, $option){
-    global $mysqli, $username;
-    $sql = "UPDATE application SET accepted = ? WHERE id = ?";
-    $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param("ss", $option, $id);
-    $stmt->execute();
-}
-
-if(isset($_POST['Accept'])){
-    $id = $_POST['Accept'];
-    updateAccepted($id, 'accepted');
-
-}else if(isset($_POST['Reject'])){
-    $id = $_POST['Reject'];
-    updateAccepted($id, 'rejected');
 }
 
 
