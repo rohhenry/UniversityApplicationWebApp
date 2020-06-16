@@ -89,13 +89,51 @@ if(isset($_POST['apply'])){
     <link rel="stylesheet" href="css/applyUni.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
+
+<style>
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 5px;
+        overflow: hidden;
+        background-color: lightskyblue;
+    }
+
+    li {
+        float: left;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover {
+        background-color: darkgray;
+    }
+    body {
+        background-image: url('book_750xx2290-1290-0-235.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+
+</style>
+
 <body>
 
-<a href='logout.php'>Logout</a>
-<br>
-<a href='Courses.php'>Add/Edit Courses</a>
-<br>
-<a href='applyToUniversity.php'>Apply To University</a>
+<ul>
+    <li><a href='logout.php'>Logout</a></li>
+    <li><a href='Courses.php'>Add/Edit Courses</a></li>
+    <li><a href='ApplyToUniversity.php'>Apply To University</a></li>
+    <li><a href='StudentMain.php'>Student Main</a><li>
+</ul>
+
+
 <br>
 <br>
 <div class = apply_box>

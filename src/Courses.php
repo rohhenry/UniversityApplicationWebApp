@@ -68,7 +68,7 @@
 
 ?>
 
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <style>
     ul {

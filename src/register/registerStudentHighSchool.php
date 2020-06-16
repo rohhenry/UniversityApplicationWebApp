@@ -51,7 +51,7 @@ if(isset($_POST['submit'])){
 
 ?>
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <link rel="stylesheet" href="registerStudent.css">

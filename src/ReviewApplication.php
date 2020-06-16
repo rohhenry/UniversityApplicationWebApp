@@ -81,7 +81,7 @@
 
 ?>
 
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
 Student Info: <br>
 <?php displayStudentInfo()?>

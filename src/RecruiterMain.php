@@ -54,7 +54,7 @@ $result = $mysqli->query($join) -> fetch_assoc();
 
 ?>
 
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
 
 

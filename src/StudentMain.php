@@ -74,7 +74,7 @@
    
 ?>
 
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
 
 <!--<a href='logout.php'>Logout</a>-->
