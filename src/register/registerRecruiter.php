@@ -13,7 +13,6 @@ function insertOptions(){
     while($stmt->fetch()){
         echo "<option value='$uniname'>  $uniname </option>";
     }
-
 }
 function addRecruiter(){
     global $mysqli;

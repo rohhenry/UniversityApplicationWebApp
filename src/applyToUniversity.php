@@ -102,5 +102,6 @@ Applied Universities:
     </select>
 
     <input type="submit" value="apply" name = "apply">
+
 </form>
 </html>
