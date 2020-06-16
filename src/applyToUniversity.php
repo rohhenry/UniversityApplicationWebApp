@@ -88,7 +88,7 @@ function insertOptions(){
 <br>
 <a href='applyToUniversity.php'>Apply To University</a>
 <br>
-Applied Universities:
+Universities Not Applied To:
 <?php getUniversityNotApplied();?>
 <br>
 <form method="post">

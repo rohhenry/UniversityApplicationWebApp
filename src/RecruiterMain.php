@@ -12,14 +12,13 @@ $username = $_SESSION["username"];
 function displayApplications($offer, $accepted){
     global $mysqli, $username;
     $sql = "SELECT application.university_name, faculty_name, student_id
-                FROM application, review, recruiter
-                WHERE recruiter.login_username = 'a'
-                AND recruiter.id = review.recruiter_id
-                AND application.id = review.Application_id
+                FROM application, recruiter
+                WHERE recruiter.login_username = ?
+                AND application.university_name = recruiter.university_name
                 AND application.offer = ? 
                 AND application.accepted = ?";
     $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param("ss",$offer,$accepted);
+    $stmt->bind_param("sss",$username, $offer,$accepted);
     $stmt->execute();
     $stmt->bind_result($university_name, $faculty_name, $student_id);
     while($stmt->fetch()){
@@ -27,25 +26,22 @@ function displayApplications($offer, $accepted){
     }
 }
 
-function displayOffers(){
+function displayApplicationsToReview(){
     global $mysqli, $username;
-    $sql = "SELECT application.university_name, faculty_name, student_id
-                FROM application, review, recruiter
-                WHERE recruiter.login_username = 'a'
-                AND recruiter.id = review.recruiter_id
-                AND application.id = review.Application_id
-                AND application.offer = ? 
-                AND application.accepted = ?";
+    $sql = "SELECT application.university_name, application.faculty_name, application.student_id
+            FROM application, recruiter
+            WHERE recruiter.login_username = ?
+            AND application.university_name = recruiter.university_name
+            AND application.offer = 'pending'
+            AND application.accepted = 'pending'";
     $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param("ss",$offer,$accepted);
+    $stmt->bind_param("s",$username);
     $stmt->execute();
     $stmt->bind_result($university_name, $faculty_name, $id);
-    echo '<form method="post">';
+    echo '<form method="post" action="ReviewApplication.php">';
     while($stmt->fetch()){
         echo "<b> $university_name $faculty_name</b> 
-            <button type=\"submit\" value=$id name=\"Accept\" >Accept</button>
-            <button type=\"submit\" value=$id name=\"Reject\" >Reject</button>
-            <br>";
+            <button type=\"submit\" value=$id name=\"Review\" >Review</button><br>";
     }
     echo '</form>';
 }
@@ -147,13 +143,13 @@ $result = $mysqli->query($join) -> fetch_assoc();
     <span>Recruiter username:</span> <?php echo $result['login_username']; ?>
     <br>
     <br>
-    Pending Applications:
+    Applications To Review:
     <br>
-    <?php displayApplications("pending", "pending")?>
-    Offers:
+    <?php displayApplicationsToReview()?>
+    Offers Given:
     <br>
-    <?php displayOffers("accepted", "pending")?>
-    No Offers:
+    <?php displayApplications("accepted", "pending")?>
+    Rejected Applications:
     <br>
     <?php displayApplications("rejected", "pending")?>
     <br>
