@@ -57,7 +57,7 @@ function applyUniversity() {
     $university_name = $_POST['university'];
     $faculty_name = $_POST['faculty'];
 
-
+    echo $aid;
     $sql = "INSERT INTO APPLICATION 
                 SELECT ?, ?, ?, ?, ?, ? ,Student.id
                 FROM Student
@@ -65,7 +65,7 @@ function applyUniversity() {
     $stmt = $mysqli->prepare($sql);
     $stmt->bind_param("sssssss", $aid, $text, $offer, $accepted, $university_name, $faculty_name, $username);
     if($stmt->execute()){
-        echo 'success';
+        echo 'application successfully submitted';
     }else{
 
         echo 'failure';

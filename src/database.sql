@@ -108,7 +108,7 @@ ON DELETE CASCADE
 );
 
 CREATE TABLE Application(
-id varchar(20),
+id int NOT NULL AUTO_INCREMENT,
 text varchar(20),
 offer varchar(20),
 accepted varchar(20),
@@ -127,9 +127,11 @@ ON DELETE CASCADE
 ON UPDATE CASCADE
 );
 
+ALTER TABLE Application AUTO_INCREMENT = 1000;
+
 CREATE TABLE Send(
 university_name varchar(20),
-application_id varchar(20),
+application_id int,
 student_id varchar(20),
 PRIMARY KEY(university_name, application_id, student_id),
 FOREIGN KEY(university_name) REFERENCES University(name) 
@@ -144,7 +146,7 @@ ON DELETE CASCADE
 
 CREATE TABLE Review(
 	recruiter_id varchar(20),
-	application_id varchar(20),
+	application_id int(20),
 	PRIMARY KEY(recruiter_id, application_id),
 	FOREIGN KEY (recruiter_id)  REFERENCES Recruiter(id),
 	FOREIGN KEY (application_id)  REFERENCES Application(id)

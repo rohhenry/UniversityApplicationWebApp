@@ -43,9 +43,29 @@ INSERT INTO
 Faculty (name, university_name, application_Instructions)
 VALUES
 ('Faculty of Education', 'UBC', 'none'),
+('Faculty of Science', 'UBC', 'CH12, PHYS12, MATH12'),
+('Faculty of Art','UBC','none'),
+('Faculty of Medicine','UBC','please contact direct to us'),
+('Department of Dentistry','UBC','please contact direct to us'),
+('Faculty of Education', 'SFU', 'none'),
 ('Faculty of Science', 'SFU', 'CH12, PHYS12, MATH12'),
-('Faculty of Art','UOT','none'),
+('Faculty of Art','SFU','none'),
+('Faculty of Medicine','SFU','please contact direct to us'),
+('Department of Dentistry','SFU','please contact direct to us'),
+('Faculty of Education', 'MIT', 'none'),
+('Faculty of Science', 'MIT', 'CH12, PHYS12, MATH12'),
+('Faculty of Art','MIT','none'),
 ('Faculty of Medicine','MIT','please contact direct to us'),
+('Department of Dentistry','MIT','please contact direct to us'),
+('Faculty of Education', 'UOT', 'none'),
+('Faculty of Science', 'UOT', 'CH12, PHYS12, MATH12'),
+('Faculty of Art','UOT','none'),
+('Faculty of Medicine','UOT','please contact direct to us'),
+('Department of Dentistry','UOT','please contact direct to us'),
+('Faculty of Education', 'UOW', 'none'),
+('Faculty of Science', 'UOW', 'CH12, PHYS12, MATH12'),
+('Faculty of Art','UOW','none'),
+('Faculty of Medicine','UOW','please contact direct to us'),
 ('Department of Dentistry','UOW','please contact direct to us');
 
 INSERT INTO
@@ -150,29 +170,29 @@ VALUES
 	('90','2019','S5','001','MATH');
 
 INSERT INTO
-	Application(id,text,offer,accepted,university_name, faculty_name, student_id)
+	Application(text,offer,accepted,university_name, faculty_name, student_id)
 VALUES
-	('A1','text1','accepted','pending','UBC','Faculty of Education','S1'),
-	('A2','text2','rejected','pending','UOW','Department of Dentistry','S1'),
-	('A3','text3','pending','pending','SFU','Faculty of Science','S1'),
-	('A4','text4','pending','pending','MIT','Faculty of Medicine','S1'),
-	('A5','text5','pending','pending','UOT','Faculty of Art','S2');
+	('text1','accepted','pending','UBC','Faculty of Education','S1'),
+	('text2','rejected','pending','UOW','Department of Dentistry','S1'),
+	('text3','pending','pending','SFU','Faculty of Science','S1'),
+	('text4','pending','pending','MIT','Faculty of Medicine','S1'),
+	('text5','pending','pending','UOT','Faculty of Art','S2');
 
 
 INSERT INTO
 	Send(university_name ,application_id ,student_id)
 VALUES
-	('UBC','A1','S1'),
-	('SFU','A2','S2'),
-	('UOT','A3','S3'),
-	('MIT','A4','S4'),
-	('UOW','A5','S5');
+	('UBC',1000,'S1'),
+	('SFU',1001,'S2'),
+	('UOT',1002,'S3'),
+	('MIT',1003,'S4'),
+	('UOW',1004,'S5');
 
 INSERT INTO
 	Review(recruiter_id,application_id)
 VALUES
-	('R1','A1'),
-	('R2','A2'),
-	('R3','A3'),
-	('R4','A4'),
-	('R5','A5');
+	('R1',1000),
+	('R2',1001),
+	('R3',1002),
+	('R4',1003),
+	('R5',1004);
