@@ -69,7 +69,6 @@ function applyUniversity() {
     }else{
 
         echo 'failure';
-
     }
 }
 
@@ -111,9 +110,9 @@ if(isset($_POST['apply'])){
     </div>
     <div class="form-group">
         <label for="text">Answer for Faculty Specific Questions</label>
-        <textarea class="form-control" id="text" rows="3"></textarea>
+        <textarea name= "text" class="form-control" type="text" id="text" rows="3"></textarea>
     </div>
-    <input class="btn btn-info" type="submit" value="apply">
+    <input class="btn btn-info" type="submit" value="apply" name="apply">
 </form>
 </div>
 
