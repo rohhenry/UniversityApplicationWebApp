@@ -127,20 +127,42 @@ $result = $mysqli->query($join) -> fetch_assoc();
     <br>
     Applications To Review:
     <br>
+    <br>
     <?php displayApplicationsToReview()?>
+    <br>
+    <br>
+    <br>
     Offers Given:
     <br>
+    <br>
     <?php displayApplications("accepted", "pending")?>
+    <br>
+    <br>
+    <br>
     Rejected Applications:
+    <br>
     <br>
     <?php displayApplications("rejected", "pending")?>
     <br>
+    <br>
+    <br>
     Accepted Offers:
     <br>
+    <br>
     <?php displayApplications("accepted", "accepted")?>
+    <br>
+    <br>
+    <br>
     Rejected Offers:
     <br>
+    <br>
     <?php displayApplications("accepted", "rejected")?>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
 </div>
 
