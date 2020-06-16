@@ -1,7 +1,21 @@
 
 <?php
-include 'C:\xampp\htdocs\UniversityApplicationWebApp\src\UAconnect.php';
-$conn = OpenCon();
+//include 'C:\xampp\htdocs\UniversityApplicationWebApp\src\UAconnect.php';
+include "..\config.php";
+//$conn = OpenCon();
+
+function insertOptions(){
+    global $mysqli;
+
+    $sql = "SELECT university.name FROM university";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->execute();
+    $stmt->bind_result( $name);
+    while($stmt->fetch()){
+        echo "<option value='$name'>  $name </option>";
+    }
+
+}
 
 $a = $_GET['username'];
 $b = $_GET['password'];
@@ -16,16 +30,16 @@ $i = $_GET['university_name'];
 $sql = " INSERT INTO login (username, password) VALUES ('$a','$b'); 
  INSERT INTO local_address (contact_info_address, postal_code) VALUES ('$g','$h');
  INSERT INTO Contact_info (phone_number,address, email) VALUES ('$f','$g', '$e');
- INSERT INTO student (id, name, contact_info_email, login_username) VALUES ('$d','$c', 'i','$e', '$a');";
+ INSERT INTO recruiter (id, name, university_name, contact_info_email, login_username) VALUES ('$d','$c', '$i','$e', '$a');";
 
 
-if ($conn->multi_query($sql) === TRUE) {
+$result = $mysqli->multi_query($sql);
+
+
+if ($result) {
     echo "New recruiter record created successfully";
+    header("Location: ../Logout.php");
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Error: " . $sql . "<br>" . $mysqli->error;
 }
-
-header("Location: ../Login.php");
-
-$conn->close();
 

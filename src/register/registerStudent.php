@@ -2,19 +2,19 @@
 
 
 <?php
-include 'C:\xampp\htdocs\UniversityApplicationWebApp\src\UAconnect.php';
-//include "..\config.php";
+//include '..\UAconnect.php';
+include "..\config.php";
 
-$conn = OpenCon();
+//$conn = OpenCon();
 
-$a = $_GET['username'];
-$b = $_GET['password'];
-$c = $_GET['student_name'];
-$d = $_GET['student_id'];
-$e = $_GET['email'];
-$f = $_GET['phone_number'];
-$k = $_GET['address'];
-$h = $_GET['postal_code'];
+$a = $_POST['username'];
+$b = $_POST['password'];
+$c = $_POST['student_name'];
+$d = $_POST['student_id'];
+$e = $_POST['email'];
+$f = $_POST['phone_number'];
+$k = $_POST['address'];
+$h = $_POST['postal_code'];
 
 
 $sql = " INSERT INTO login (username, password) VALUES ('$a','$b'); 
@@ -22,18 +22,19 @@ $sql = " INSERT INTO login (username, password) VALUES ('$a','$b');
  INSERT INTO Contact_info (phone_number,address, email) VALUES ('$f','$k', '$e');
  INSERT INTO student (id, name, contact_info_email, login_username) VALUES ('$d','$c', '$e', '$a');";
 
+$result = $mysqli->multi_query($sql);
 
-if ($conn->multi_query($sql) === TRUE) {
 
+if ($result) {
     echo "New student record created successfully";
-    header("Location: ../Login.php");
+    header("Location: ../Logout.php");
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Error: " . $sql . "<br>" . $mysqli->error;
 }
 
 
 
-$conn->close();
+//$conn->close();
 
 ?>
 

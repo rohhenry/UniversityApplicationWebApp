@@ -56,7 +56,6 @@
 
     function insertOptions(){
         global $mysqli, $username;
-
         $sql = "SELECT Course.number, Course.department, Course.name 
                 FROM Course";
         $stmt = $mysqli->prepare($sql);
@@ -65,8 +64,8 @@
         while($stmt->fetch()){
             echo "<option value='$number|$department'> $department $number: $name </option>";
         }
-
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -122,13 +121,6 @@
 
     </select>
 
-
-    <!-- Number
-    <input type="text" name="number">
-    Department
-    <input type="text" name="department">
-    Name
-    <input type="text" name="name"> -->
     Year Taken
     <input type="text" name="year">
     Mark
