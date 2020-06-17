@@ -78,7 +78,7 @@ PRIMARY KEY(name));
 CREATE TABLE HighSchoolStudent (
 school varchar(20) NOT NULL,
 student_id  varchar(20),
-agency_name varchar(20),
+agency_name varchar(20) NOT NULL,
 FOREIGN KEY(student_id) REFERENCES Student(id) 
 ON DELETE CASCADE,
 FOREIGN KEY (agency_name) REFERENCES Agency(name)
@@ -87,7 +87,7 @@ ON DELETE SET NULL
 
 CREATE TABLE TransferStudent (
 student_id varchar(20),
-university_name varchar(20), 
+university_name varchar(20) NOT NULL, 
 FOREIGN KEY(student_id) REFERENCES Student(id) 
 ON DELETE CASCADE,
 FOREIGN KEY(university_name) REFERENCES University(name) 
