@@ -25,6 +25,29 @@ function displayApplications($offer, $accepted){
     }
 }
 
+function division_course(){
+    global $mysqli, $username;
+
+    $sql = "SELECT c.department , c.number
+                FROM course c
+                WHERE not exists (
+                select * from student where not exists (
+                select * from application, recruiter, taken where
+                application.university_name = recruiter.university_name
+                AND recruiter.login_username = ?
+                AND application.student_id = student.id
+                AND taken.student_id = student.id
+                AND taken.course_number = c.number
+                AND taken.course_department = c.department))";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("s",$username);
+    $stmt->execute();
+    $stmt->bind_result($dept, $num);
+    while($stmt->fetch()){
+        echo "<b> $dept $num</b><br>";
+    }
+}
+
 function displayApplicationsToReview(){
     global $mysqli, $username;
     $sql = "SELECT application.university_name, application.faculty_name, application.id
@@ -157,6 +180,10 @@ $result = $mysqli->query($join) -> fetch_assoc();
     <br>
     <br>
     <?php displayApplications("accepted", "rejected")?>
+    <br>
+    <br>
+    The course taken by all the student who applied to the university:
+    <?php division_course()?>
     <br>
     <br>
     <br>
