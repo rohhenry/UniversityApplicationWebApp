@@ -49,26 +49,40 @@ function applyUniversity() {
 
 
 
-    $aid = "A";
-    $aid .=  getAppId();
     $text = $_POST['text'];
     $offer = 'pending';
     $accepted = 'pending';
     $university_name = $_POST['university'];
     $faculty_name = $_POST['faculty'];
+    $aid = getAppId();
+    $check_sql = "SELECT faculty_name, university_name
+                FROM application a , student s
+                WHERE a.student_id = s.id AND s.login_username = ? AND a.faculty_name = ? AND a.university_name = ? ;";
+    $stmt = $mysqli->prepare($check_sql);
+    $stmt->bind_param("sss",$username,$faculty_name,$university_name);
+   $stmt->execute();
+    $stmt->store_result();
+    echo $stmt->num_rows;
+    if($stmt->num_rows > 0){
+        echo 'you already applied';
+        return;
+    }
 
-    echo $aid;
+
     $sql = "INSERT INTO APPLICATION 
-                SELECT ?, ?, ?, ?, ?, ? ,Student.id
+                SELECT  ?,?, ?, ?, ?, ? ,Student.id
                 FROM Student
                 WHERE Student.login_username = ?";
-    $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param("sssssss", $aid, $text, $offer, $accepted, $university_name, $faculty_name, $username);
-    if($stmt->execute()){
-        echo 'application successfully submitted';
-    }else{
+    if( $stmt = $mysqli->prepare($sql)) {
+        $stmt->bind_param("sssssss",$aid, $text, $offer, $accepted, $university_name, $faculty_name, $username);
+        if ($stmt->execute()) {
+            echo 'application successfully submitted';
+        } else {
 
-        echo 'failure';
+            echo 'failure';
+        }
+    } else {
+        echo 'error';
     }
 }
 
@@ -154,8 +168,11 @@ if(isset($_POST['apply'])){
 </form>
 </div>
 
-
-
+<br>
+<br>
+List of University
+<br>
+<br>
         <div class = "uniTable">
             <table class="table table-bordered">
             <thead>
