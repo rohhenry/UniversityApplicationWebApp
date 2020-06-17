@@ -1,52 +1,52 @@
-<?php 
-    session_start();
-    
-    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-        if(isset($_SESSION["type"]) && $_SESSION["type"] == "student"){
-            header("location: StudentMain.php");
-        } else {
-            header("location: RecruiterMain.php");
-        }
+<?php
+session_start();
+
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    if(isset($_SESSION["type"]) && $_SESSION["type"] == "student"){
+        header("location: StudentMain.php");
+    } else {
+        header("location: RecruiterMain.php");
     }
+}
 
-    require_once "config.php";
-    
-    $username = "";
-    $password = "";
+require_once "config.php";
 
-    if(!empty($_POST['username']) && !empty($_POST['password'])){
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+$username = "";
+$password = "";
 
-        $stmt = $mysqli->prepare("SELECT password FROM login WHERE username = ?");
-        $stmt->bind_param("s", $username);   
+if(!empty($_POST['username']) && !empty($_POST['password'])){
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $stmt = $mysqli->prepare("SELECT password FROM login WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->store_result();
+    $stmt->bind_result($expected_password);
+    $stmt->fetch();
+    if($stmt->num_rows == 1 && $expected_password == $password){
+        session_start();
+        $_SESSION["loggedin"] = true;
+        $_SESSION["username"] = $username;
+
+
+        $stmt = $mysqli->prepare("SELECT * from student where login_username = ?");
+        $stmt->bind_param("s", $username);
         $stmt->execute();
         $stmt->store_result();
-        $stmt->bind_result($expected_password);
-        $stmt->fetch();
-        if($stmt->num_rows == 1 && $expected_password == $password){
-            session_start();
-            $_SESSION["loggedin"] = true;
-            $_SESSION["username"] = $username;
-            
-            
-            $stmt = $mysqli->prepare("SELECT * from student where login_username = ?");
-            $stmt->bind_param("s", $username);
-            $stmt->execute();
-            $stmt->store_result();
 
-            if($stmt->num_rows == 1){
-                $_SESSION["type"] = "student";
-                header("location: StudentMain.php");
-            }else{
-                $_SESSION["type"] = "recruiter";
-                header("location: RecruiterMain.php");
-            }
+        if($stmt->num_rows == 1){
+            $_SESSION["type"] = "student";
+            header("location: StudentMain.php");
         }else{
-            echo "incorrect username/password";
+            $_SESSION["type"] = "recruiter";
+            header("location: RecruiterMain.php");
         }
+    }else{
+        echo "incorrect username/password";
     }
-   
+}
+
 ?>
 
 <!doctype html>
@@ -104,33 +104,33 @@
         </form>
     </div>
 </div>
-    <script>
+<script>
 
-        let modal = document.getElementById("myModal");
-
-
-        let btn = document.getElementById("regBtn");
+    let modal = document.getElementById("myModal");
 
 
-        let span = document.getElementsByClassName("close")[0];
+    let btn = document.getElementById("regBtn");
 
 
-        btn.onclick = function(e) {
-            modal.style.display = "block";
-            e.preventDefault();
-        }
+    let span = document.getElementsByClassName("close")[0];
 
 
-        span.onclick = function() {
+    btn.onclick = function(e) {
+        modal.style.display = "block";
+        e.preventDefault();
+    }
+
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
             modal.style.display = "none";
         }
-
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
+    }
+</script>
 </body>
 </html>

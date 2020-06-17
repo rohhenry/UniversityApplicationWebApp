@@ -63,26 +63,44 @@
         updateAccepted($id, 'rejected');
     }
 
-    #elisa update
-
-
     $join = "SELECT student.id, student.name, student.contact_info_email, student.login_username
     FROM student, login WHERE login.username = student.login_username AND login.username = '$username'";
 
     $result = $mysqli->query($join) -> fetch_assoc();
+
+
+    $status = $mysqli->prepare("SELECT highschoolstudent.agency_name, highschoolstudent.school 
+                from student, highschoolstudent 
+                where student.login_username = ?
+                AND student.id = highschoolstudent.student_id");
+    $status->bind_param("s", $username);
+    $status->execute();
+    $status->store_result();
+//    $status->bind_result($agency,$school);
+
+    if($status->num_rows > 0){
+        $status->bind_result($agency,$school);
+        $status->fetch();
+        echo $agency;
+
+    }else{
+        $transfer = $mysqli->prepare("SELECT university_name
+                from student, transferstudent 
+                where student.login_username = ?
+                AND student.id = transferstudent.student_id");
+        $transfer->bind_param("s", $username);
+        $transfer->execute();
+        $transfer->store_result();
+        $transfer->bind_result($school);
+        $transfer->fetch();
+        $agency = 'not applicable';
+    }
 
    
 ?>
 
 <!doctype html>
 <html>
-
-<!--<a href='logout.php'>Logout</a>-->
-<!--<br>-->
-<!--<a href='Courses.php'>Add/Edit Courses</a>-->
-<!--<br>-->
-<!--<a href='ApplyToUniversity.php'>Apply To University</a>-->
-<!--<br>-->
 
 <br>
 <style>
@@ -146,6 +164,12 @@
     <br>
     <br>
     <span>Student username:</span> <?php echo $result['login_username']; ?>
+    <br>
+    <br>
+    <span>Student School:</span> <?php echo $school; ?>
+    <br>
+    <br>
+    <span>Agency ID:</span> <?php echo $agency; ?>
     <br>
     <br>
     Pending Applications:
