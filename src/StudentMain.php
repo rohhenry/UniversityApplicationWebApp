@@ -21,6 +21,24 @@
             echo "<b> $count </b><br>";
         }   
     }
+function displayCountGroupBy(){
+    global $mysqli, $username;
+    $sql = "SELECT university_name, count(*)
+                FROM application, student 
+                WHERE application.student_id = student.id
+                AND student.login_username = ?
+                group by university_name";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->bind_result($uname,$count);
+    while($stmt->fetch()){
+        echo "<b>$uname, $count </b><br>";
+    }
+}
+
+
+
         
     function displayApplications($offer, $accepted){
         global $mysqli, $username;
@@ -96,7 +114,6 @@
     if($status->num_rows > 0){
         $status->bind_result($agency,$school);
         $status->fetch();
-        echo $agency;
 
     }else{
         $transfer = $mysqli->prepare("SELECT university_name
@@ -187,8 +204,12 @@
     <span>Agency ID:</span> <?php echo $agency; ?>
     <br>
     <br>
-    Number of Applications Sent:
+    Total number of Applications Sent:
     <?php displayCount()?>
+    <br>
+    <br>
+    Number of Applications Sent per University:
+    <?php displayCountGroupBy();?>
     <br>
     <br>
     Pending Applications:

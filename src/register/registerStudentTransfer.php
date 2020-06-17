@@ -23,7 +23,7 @@ function addTransferStudent(){
     $f = $_POST['phone_number'];
     $k = $_POST['address'];
     $h = $_POST['postal_code'];
-    $i = $_POST['student_school'];
+    $i = $_POST['university_name'];
 
     $sql = " INSERT INTO login (username, password) VALUES ('$a','$b'); 
  INSERT INTO local_address (contact_info_address, postal_code) VALUES ('$k','$h');
@@ -33,10 +33,15 @@ function addTransferStudent(){
 
     $result = $mysqli->multi_query($sql);
 
+    $transfer = "INSERT INTO transferstudent (student_id, university_name) VALUES ('$d','$i');";
+    echo $i;
+    echo 'be heree';
+    $result2 = $mysqli->query($transfer);
 
-    if ($result) {
+
+    if ($result and $result2) {
         echo "New student record created successfully";
-        header("Location: ../Logout.php");
+//        header("Location: ../Logout.php");
     } else {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }
@@ -114,9 +119,11 @@ if(isset($_POST['submit'])){
                 <label for="student_id">Student ID</label>
                 <input type="text" class="form-control" id="student_id" name="student_id" placeholder="">
             </div>
+
             <div class="form-group">
-                <label for="student_school">Select University you affiliated to</label>
-                <select class="form-control form-control" name="student_school">
+                <label for="university_name">Select University you affiliated to</label>
+
+                <select class="form-control form-control" name="university_name">
                     <option selected hidden> University </option>
                     <?php insertOptions()?>
                 </select>
