@@ -81,8 +81,16 @@
     function insertOptions(){
         global $mysqli, $username;
         $sql = "SELECT Course.number, Course.department, Course.name 
-                FROM Course";
+                FROM Course
+                WHERE (Course.number, Course.department) NOT IN 
+                (SELECT Course.number, Course.department
+                FROM Course, Taken, Student
+                WHERE Course.number = Taken.course_number 
+                AND Course.department = Taken.course_department
+                AND Taken.student_id = Student.id 
+                AND Student.login_username = ?)";
         $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param("s", $username);
         $stmt->execute();
         $stmt->bind_result($number, $department, $name);
         while($stmt->fetch()){
