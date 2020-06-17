@@ -6,6 +6,21 @@
     require_once "config.php";
     
     $username = $_SESSION["username"];
+
+    function displayCount(){
+        global $mysqli, $username;
+        $sql = "SELECT count(*)
+                FROM application, student 
+                WHERE application.student_id = student.id
+                AND student.login_username = ?";
+        $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param("s", $username);   
+        $stmt->execute();
+        $stmt->bind_result($count);
+        while($stmt->fetch()){
+            echo "<b> $count </b><br>";
+        }   
+    }
         
     function displayApplications($offer, $accepted){
         global $mysqli, $username;
@@ -91,7 +106,7 @@
         $transfer->bind_param("s", $username);
         $transfer->execute();
         $transfer->store_result();
-        $transfer->bind_result($school);
+        $transfer->bind_result($school);    
         $transfer->fetch();
         $agency = 'not applicable';
     }
@@ -170,6 +185,10 @@
     <br>
     <br>
     <span>Agency ID:</span> <?php echo $agency; ?>
+    <br>
+    <br>
+    Number of Applications Sent:
+    <?php displayCount()?>
     <br>
     <br>
     Pending Applications:
