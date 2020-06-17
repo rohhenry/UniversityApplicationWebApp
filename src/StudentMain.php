@@ -151,19 +151,37 @@
     Pending Applications:
     <br>
     <?php displayApplications("pending", "pending")?>
+    <br>
+    <br>
+    <br>
     Offers: 
     <br>
     <?php displayOffers("accepted", "pending")?>
+    <br>
+    <br>
+    <br>
     No Offers:
     <br>
     <?php displayApplications("rejected", "pending")?>
     <br>
+    <br>
+    <br>
     Accepted Offers:
     <br>
     <?php displayApplications("accepted", "accepted")?>
+    <br>
+    <br>
+    <br>
     Rejected Offers:
     <br>
     <?php displayApplications("accepted", "rejected")?>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
         
 </div>
 

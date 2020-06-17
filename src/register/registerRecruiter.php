@@ -114,10 +114,10 @@ if(isset($_POST['submit'])){
             <input type="text" class="form-control" name="recruiter_id" id="recruiter_id" placeholder="">
         </div>
         <div class="form-group">
-            <label for="university_name">University Name</label>
+            <label for="university_name">Select University you affiliated to</label>
 
             <select class="form-control form-control" name="university_name">
-                <option selected hidden>Select University you affiliated to </option>
+                <option selected hidden> University Name </option>
                 <?php insertOptions()?>
             </select>
         </div>

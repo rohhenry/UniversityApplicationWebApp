@@ -31,8 +31,7 @@ function addHighSchoolStudent(){
  INSERT INTO local_address (contact_info_address, postal_code) VALUES ('$k','$h');
  INSERT INTO Contact_info (phone_number,address, email) VALUES ('$f','$k', '$e');
  INSERT INTO student (id, name, contact_info_email, login_username) VALUES ('$d','$c', '$e', '$a');
- INSERT INTO highschoolstudent (school, student_id, agency_name) VALUES ('$i','$d', '$j');
-";
+ INSERT INTO highschoolstudent (school, student_id, agency_name) VALUES ('$i','$d', '$j');";
 
     $result = $mysqli->multi_query($sql);
 
@@ -129,7 +128,7 @@ if(isset($_POST['submit'])){
             </select>
         </div>
 
-        <button type="submit" class="btn btn-primary">Sign in</button>
+        <button type="submit" class="btn btn-primary" name = "submit">  Sign in</button>
     </form>
 </div>
 
