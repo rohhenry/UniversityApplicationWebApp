@@ -87,7 +87,7 @@ ON DELETE SET NULL
 
 CREATE TABLE TransferStudent (
 student_id varchar(20),
-university_name varchar(20) NOT NULL, 
+university_name varchar(20), 
 FOREIGN KEY(student_id) REFERENCES Student(id) 
 ON DELETE CASCADE,
 FOREIGN KEY(university_name) REFERENCES University(name) 
