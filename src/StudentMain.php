@@ -182,6 +182,7 @@ function displayCountGroupBy(){
     <li><a href='logout.php'>Logout</a></li>
     <li><a href='Courses.php'>Add/Remove Courses</a></li>
     <li><a href='ApplyToUniversity.php'>Apply To University</a></li>
+    <li><a href='settingStudent.php'>Change password</a></li>
 </ul>
 
 <div class="form">
@@ -209,6 +210,7 @@ function displayCountGroupBy(){
     <br>
     <br>
     Number of Applications Sent per University:
+    <br>
     <?php displayCountGroupBy();?>
     <br>
     <br>

@@ -62,7 +62,6 @@ function applyUniversity() {
     $stmt->bind_param("sss",$username,$faculty_name,$university_name);
    $stmt->execute();
     $stmt->store_result();
-    echo $stmt->num_rows;
     if($stmt->num_rows > 0){
         echo 'you already applied';
         return;
@@ -144,6 +143,7 @@ if(isset($_POST['apply'])){
     <li><a href='logout.php'>Logout</a></li>
     <li><a href='Courses.php'>Add/Edit Courses</a></li>
     <li><a href='ApplyToUniversity.php'>Apply To University</a></li>
+    <li><a href='settingStudent.php'>Change password</a></li>
     <li><a href='StudentMain.php'>Student Main</a><li>
 </ul>
 

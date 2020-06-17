@@ -8,7 +8,6 @@
     border: 10px solid #CFE2F3;
     background-color: #CFE2F3;
     border-radius: 5px;
-
 }
 
 .slide_bg {
@@ -52,4 +51,9 @@
     100% {
         background-image: url('../images/University-of-Waterloo-1080x675.jpg');
     }
+}
+
+.register_box {
+    width: 50%;
+    padding: 10px;
 }
