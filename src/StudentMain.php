@@ -118,7 +118,7 @@
 
     .form {
         width:400px;
-        float:left;
+        float: left;
         background-color:ivory;
         font-family:'Droid Serif',serif;
         padding-left:40px
