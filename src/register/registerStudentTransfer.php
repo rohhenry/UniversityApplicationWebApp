@@ -25,11 +25,11 @@ function addTransferStudent(){
     $h = $_POST['postal_code'];
     $i = $_POST['student_school'];
 
-    $sql = " INSERT INTO login (username, password) VALUES ('$a','$b'); 
- INSERT INTO local_address (contact_info_address, postal_code) VALUES ('$k','$h');
- INSERT INTO Contact_info (phone_number,address, email) VALUES ('$f','$k', '$e');
- INSERT INTO student (id, 'name', contact_info_email, login_username) VALUES ('$d','$c', '$e', '$a');
- INSERT INTO transferstudent (student_id, university_name) VALUES ('$d','$i');";
+    $sql = "INSERT INTO login (username, password) VALUES ('$a','$b'); 
+            INSERT INTO local_address (contact_info_address, postal_code) VALUES ('$k','$h');
+            INSERT INTO Contact_info (phone_number,address, email) VALUES ('$f','$k', '$e');
+            INSERT INTO student (id, name, contact_info_email, login_username) VALUES ('$d','$c', '$e', '$a');
+            INSERT INTO transferstudent (student_id, university_name) VALUES ('$d','$i');";
 
     $result = $mysqli->multi_query($sql);
 
