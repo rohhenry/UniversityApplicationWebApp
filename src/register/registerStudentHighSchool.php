@@ -121,7 +121,7 @@ if(isset($_POST['submit'])){
             <input type="text" class="form-control" id="student_school" name="student_school" placeholder="">
         </div>
         <div class="form-group">
-            <label for="Agency_id">agency id</label>
+            <label for="Agency_id">Agency ID</label>
             <select class="form-control form-control" name="agency_id">
                 <option selected hidden>Select agency you have </option>
                 <?php insertOptions()?>

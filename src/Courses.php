@@ -19,13 +19,33 @@
         $stmt->bind_param("s", $username);
         $stmt->execute();
         #$stmt->store_result();
+        echo '<form method="post">';
         $stmt->bind_result($course_department, $course_number, $course_name, $mark);
         while($stmt->fetch()){
-            echo "<b> $course_department, $course_number, $course_name, $mark </b><br>";
+            echo "<b> $course_department, $course_number, $course_name, $mark </b>
+            <button name=\"DeleteCourse\" type=\"submit\" value=\"$course_number|$course_department\">X</button><br><br>";
         }
+        echo '</form>';
     }
 
-    function addCourseTaken(){
+    function deleteCourse(){
+        global $mysqli, $username; 
+        $course = $_POST['DeleteCourse'];
+        $course_explode = explode('|', $course);
+        $course_number = $course_explode[0];
+        $course_department = $course_explode[1];
+
+        
+        $sql = "DELETE FROM Taken
+                WHERE Taken.course_number = ?
+                AND Taken.course_department = ?
+                AND Taken.student_id = (Select id from student where Student.login_username = ?)";
+        $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param("sss", $course_number, $course_department, $username);
+        $stmt->execute();
+    }
+
+    function addCourse(){
         global $mysqli, $username; 
 
         $mark = $_POST['mark'];
@@ -51,14 +71,26 @@
     }
 
     if(isset($_POST['addCourse'])){
-        addCourseTaken();
+        addCourse();
+    }
+
+    if(isset($_POST['DeleteCourse'])){
+        deleteCourse();
     }
 
     function insertOptions(){
         global $mysqli, $username;
         $sql = "SELECT Course.number, Course.department, Course.name 
-                FROM Course";
+                FROM Course
+                WHERE (Course.number, Course.department) NOT IN 
+                (SELECT Course.number, Course.department
+                FROM Course, Taken, Student
+                WHERE Course.number = Taken.course_number 
+                AND Course.department = Taken.course_department
+                AND Taken.student_id = Student.id 
+                AND Student.login_username = ?)";
         $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param("s", $username);
         $stmt->execute();
         $stmt->bind_result($number, $department, $name);
         while($stmt->fetch()){

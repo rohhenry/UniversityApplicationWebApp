@@ -6,6 +6,21 @@
     require_once "config.php";
     
     $username = $_SESSION["username"];
+
+    function displayCount(){
+        global $mysqli, $username;
+        $sql = "SELECT count(*)
+                FROM application, student 
+                WHERE application.student_id = student.id
+                AND student.login_username = ?";
+        $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param("s", $username);   
+        $stmt->execute();
+        $stmt->bind_result($count);
+        while($stmt->fetch()){
+            echo "<b> $count </b><br>";
+        }   
+    }
         
     function displayApplications($offer, $accepted){
         global $mysqli, $username;
@@ -63,26 +78,44 @@
         updateAccepted($id, 'rejected');
     }
 
-    #elisa update
-
-
     $join = "SELECT student.id, student.name, student.contact_info_email, student.login_username
     FROM student, login WHERE login.username = student.login_username AND login.username = '$username'";
 
     $result = $mysqli->query($join) -> fetch_assoc();
+
+
+    $status = $mysqli->prepare("SELECT highschoolstudent.agency_name, highschoolstudent.school 
+                from student, highschoolstudent 
+                where student.login_username = ?
+                AND student.id = highschoolstudent.student_id");
+    $status->bind_param("s", $username);
+    $status->execute();
+    $status->store_result();
+//    $status->bind_result($agency,$school);
+
+    if($status->num_rows > 0){
+        $status->bind_result($agency,$school);
+        $status->fetch();
+        echo $agency;
+
+    }else{
+        $transfer = $mysqli->prepare("SELECT university_name
+                from student, transferstudent 
+                where student.login_username = ?
+                AND student.id = transferstudent.student_id");
+        $transfer->bind_param("s", $username);
+        $transfer->execute();
+        $transfer->store_result();
+        $transfer->bind_result($school);    
+        $transfer->fetch();
+        $agency = 'not applicable';
+    }
 
    
 ?>
 
 <!doctype html>
 <html>
-
-<!--<a href='logout.php'>Logout</a>-->
-<!--<br>-->
-<!--<a href='Courses.php'>Add/Edit Courses</a>-->
-<!--<br>-->
-<!--<a href='ApplyToUniversity.php'>Apply To University</a>-->
-<!--<br>-->
 
 <br>
 <style>
@@ -118,7 +151,7 @@
 
     .form {
         width:400px;
-        float:left;
+        float: left;
         background-color:ivory;
         font-family:'Droid Serif',serif;
         padding-left:40px
@@ -130,7 +163,7 @@
 </h1>
 <ul>
     <li><a href='logout.php'>Logout</a></li>
-    <li><a href='Courses.php'>Add/Edit Courses</a></li>
+    <li><a href='Courses.php'>Add/Remove Courses</a></li>
     <li><a href='ApplyToUniversity.php'>Apply To University</a></li>
 </ul>
 
@@ -146,6 +179,16 @@
     <br>
     <br>
     <span>Student username:</span> <?php echo $result['login_username']; ?>
+    <br>
+    <br>
+    <span>Student School:</span> <?php echo $school; ?>
+    <br>
+    <br>
+    <span>Agency ID:</span> <?php echo $agency; ?>
+    <br>
+    <br>
+    Number of Applications Sent:
+    <?php displayCount()?>
     <br>
     <br>
     Pending Applications:

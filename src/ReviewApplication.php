@@ -82,7 +82,13 @@
 ?>
 
 <!doctype html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/ReviewApplication.css">
+</head>
 <html>
+<body>
+<div class="container">
+<div class="center">
 Student Info: <br>
 <?php displayStudentInfo()?>
 Courses Taken: <br>
@@ -93,4 +99,7 @@ Courses Taken: <br>
 <button type="submit" name="Accept" >Accept</button>
 <button type="submit" name="Reject" >Reject</button>
 </form>
+</div>
+</div>
+</body>
 </html>

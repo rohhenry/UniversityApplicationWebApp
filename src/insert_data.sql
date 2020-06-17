@@ -154,11 +154,11 @@ VALUES
 INSERT INTO
 	TransferStudent(university_name ,student_id)
 VALUES
-	('UBC','S1'),
-	('SFU','S2'),
-	('UOT','S3'),
-	('MIT','S4'),
-	('UOW','S5');
+	('UBC','S6'),
+	('SFU','S7'),
+	('UOT','S8'),
+	('MIT','S9'),
+	('UOW','S10');
 
 INSERT INTO
 	Taken(mark,year,student_id,course_number,course_department)
