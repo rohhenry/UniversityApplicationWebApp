@@ -75,7 +75,7 @@ if(isset($_POST['submit'])){
         background-color: darkgray;
     }
     body {
-        background-image: url('device_cleaning_hero_6.jpg');
+        background-image: url('3.jpg');
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: cover;
@@ -100,12 +100,12 @@ if(isset($_POST['submit'])){
         <div class="form-row">
 
             <div class="form-group col-md-6">
-                <label for="password">Password</label>
+                <label for="password">Input Your new Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="">
             </div>
 
             <div class="form-group col-md-6">
-                <label for="checkPassword">Password</label>
+                <label for="checkPassword">Re-enter new Password</label>
                 <input type="password" class="form-control" id="checkPassword" name="checkPassword" placeholder="">
             </div>
 

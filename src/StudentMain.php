@@ -160,7 +160,7 @@ function displayCountGroupBy(){
         background-color: darkgray;
     }
     body {
-        background-image: url('device_cleaning_hero_6.jpg');
+        background-image: url('3.jpg');
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: cover;
