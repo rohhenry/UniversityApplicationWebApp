@@ -152,50 +152,52 @@ if(isset($_POST['apply'])){
 
 <br>
 <br>
-<div class = apply_box>
-<form method="post">
-    <div class="form-group">
-        <label for="university">University</label>
-        <input name="university" type="university" class="form-control" id="university" placeholder="university">
-    </div>
-    <div class="form-group">
-        <label for="faculty">Faculty</label>
-        <input name= "faculty" type="faculty" class="form-control" id="faculty" placeholder="faculty">
-    </div>
-    <div class="form-group">
-        <label for="text">Answer for Faculty Specific Questions</label>
-        <textarea name= "text" class="form-control" type="text" id="text" rows="3"></textarea>
-    </div>
-    <input class="btn btn-info" type="submit" value="apply" name="apply">
-</form>
-</div>
+<div class = "container">
+    <div class = "row">
+        <div class="col-md-6">
+            <form method="post">
+                <div class="form-group">
+                    <label for="university">University</label>
+                    <input name="university" type="university" class="form-control" id="university" placeholder="university">
+                </div>
+                <div class="form-group">
+                    <label for="faculty">Faculty</label>
+                    <input name= "faculty" type="faculty" class="form-control" id="faculty" placeholder="faculty">
+                </div>
+                <div class="form-group">
+                    <label for="text">Answer for Faculty Specific Questions</label>
+                    <textarea name= "text" class="form-control" type="text" id="text" rows="3"></textarea>
+                </div>
+                <input class="btn btn-info" type="submit" value="apply" name="apply">
+            </form>
+        </div>
+    <div class = "col-md-6">
 
-<br>
-<br>
-List of University
-<br>
-<br>
+        List of University
+
         <div class = "uniTable">
             <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th class="th-sm">University
+                <thead>
+                <tr>
+                    <th class="th-sm">University
 
-                </th>
-                <th class="th-sm">Faculty
+                    </th>
+                    <th class="th-sm">Faculty
 
-                </th>
-                <th class="th-sm">Instruction
+                    </th>
+                    <th class="th-sm">Instruction
 
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php displayTable();?>
-            </tbody>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php displayTable();?>
+                </tbody>
             </table>
         </div>
-<br>
+    </div>
+    </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
