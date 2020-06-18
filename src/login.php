@@ -77,7 +77,9 @@ if(!empty($_POST['username']) && !empty($_POST['password'])){
                 <h2> I am a </h2>
                 <button type="button" class="btn btn-primary" onClick="Javascript:window.location.href = 'register/registerRecruiter.php';"> Recruiter</button>
                 <br>
+                <br>
                 <button type="button" class="btn btn-primary" onClick="Javascript:window.location.href = 'register/registerStudentHighSchool.php';" >High School Student</button>
+                <br>
                 <br>
                 <button type="button" class="btn btn-primary" onClick="Javascript:window.location.href = 'register/registerStudentTransfer.php';" >Transfer Student</button>
             </div>
