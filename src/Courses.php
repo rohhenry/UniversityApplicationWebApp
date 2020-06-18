@@ -64,9 +64,9 @@
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param("sssss", $mark, $year, $course_number, $course_department, $username);
         if($stmt->execute()){
-            echo 'success';
+            #echo 'success';
         }else{
-            echo 'failure';
+            #echo 'failure';
         }
     }
 
