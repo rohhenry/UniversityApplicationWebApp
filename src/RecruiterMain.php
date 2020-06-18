@@ -184,6 +184,8 @@ $result = $mysqli->query($join) -> fetch_assoc();
     <br>
     <br>
     The course taken by all the student who applied to the university:
+    <br>
+    <br>
     <?php division_course()?>
     <br>
     <br>
