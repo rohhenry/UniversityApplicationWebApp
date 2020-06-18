@@ -102,30 +102,17 @@
 
 <!doctype html>
 <html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Apply University</title>
+    <link rel="stylesheet" href="css/applyUni.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
 <style>
-    ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 5px;
-        overflow: hidden;
-        background-color: lightskyblue;
-    }
 
-    li {
-        float: left;
-    }
-
-    li a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-    }
-
-    li a:hover {
-        background-color: darkgray;
-    }
     body {
         background-image: url('book_750xx2290-1290-0-235.jpg');
         background-repeat: no-repeat;
@@ -136,15 +123,39 @@
 
 </style>
 
-<ul>
-    <li><a href='logout.php'>Logout</a></li>
-    <li><a href='Courses.php'>Add/Edit Courses</a></li>
-    <li><a href='ApplyToUniversity.php'>Apply To University</a></li>
-    <li><a href='settingStudent.php'>Change password</a></li>
-    <li><a href='StudentMain.php'>Student Main</a><li>
-</ul>
-<h2>Courses: </h2>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Student</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="StudentMain.php">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href='Courses.php'>Add/Edit Courses</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href='ApplyToUniversity.php'>Apply To University</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" class="nav-link disabled" href="settingStudent.php">Setting</a>
+            </li>
 
+        </ul>
+        <div class="navbar-collapse collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php">Logout</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+<body>
 <?php displayCoursesTaken()?>
 <br>
 <br>
@@ -161,4 +172,5 @@
     <input type="text" name="mark">
     <input type="submit" value="Add Course" name = "addCourse">
 </form>
+</body>
 </html>

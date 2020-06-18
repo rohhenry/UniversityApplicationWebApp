@@ -49,31 +49,8 @@ if(isset($_POST['submit'])){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </head>
-<br>
 <style>
-    ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 5px;
-        overflow: hidden;
-        background-color: lightskyblue;
-    }
 
-    li {
-        float: left;
-    }
-
-    li a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-    }
-
-    li a:hover {
-        background-color: darkgray;
-    }
     body {
         background-image: url('3.jpg');
         background-repeat: no-repeat;
@@ -83,16 +60,37 @@ if(isset($_POST['submit'])){
 
 </style>
 
-<h1>
-    Welcome to the student main page!
-</h1>
-<ul>
-    <li><a href='logout.php'>Logout</a></li>
-    <li><a href='Courses.php'>Add/Remove Courses</a></li>
-    <li><a href='ApplyToUniversity.php'>Apply To University</a></li>
-    <li><a href='StudentMain.php'>Student Main</a><li>
-</ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Student</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="StudentMain.php">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href='Courses.php'>Add/Edit Courses</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href='ApplyToUniversity.php'>Apply To University</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" class="nav-link disabled" href="settingStudent.php">Setting</a>
+            </li>
 
+        </ul>
+        <div class="navbar-collapse collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php">Logout</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
 <body>
 
 <div class = "register_box">
