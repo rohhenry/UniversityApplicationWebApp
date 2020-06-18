@@ -132,6 +132,7 @@ $result = $mysqli->query($join) -> fetch_assoc();
 </nav>
 
 <div class="form">
+    <h2>  </h2>
     <h2>---Recruiter Info---</h2>
     <span>Recruiter Name:</span> <?php echo $result['name']; ?>
     <br>

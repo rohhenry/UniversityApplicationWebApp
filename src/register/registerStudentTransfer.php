@@ -33,15 +33,9 @@ function addTransferStudent(){
 
     $result = $mysqli->multi_query($sql);
 
-    $transfer = "INSERT INTO transferstudent (student_id, university_name) VALUES ('$d','$i');";
-    echo $i;
-    echo 'be heree';
-    $result2 = $mysqli->query($transfer);
-
-
-    if ($result and $result2) {
+    if ($result) {
         echo "New student record created successfully";
-//        header("Location: ../Logout.php");
+        header("Location: ../Logout.php");
     } else {
         echo "Error: " . $sql . "<br>" . $mysqli->error;
     }
@@ -82,7 +76,7 @@ if(isset($_POST['submit'])){
     </h2>
 
     <div class = "register_box">
-        <form action="registerStudentHighSchool.php" method="post">
+        <form action="registerStudentTransfer.php" method="post">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="username">User Name</label>
@@ -124,7 +118,7 @@ if(isset($_POST['submit'])){
                 <label for="university_name">Select University you affiliated to</label>
 
                 <select class="form-control form-control" name="university_name">
-                    <option selected hidden> University </option>
+                    <option selected hidden> University Name</option>
                     <?php insertOptions()?>
                 </select>
             </div>
