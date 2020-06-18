@@ -105,12 +105,12 @@ if(isset($_POST['submit'])){
         <div class="form-row">
 
             <div class="form-group col-md-6">
-                <label for="password">Password</label>
+                <label for="password">Input Your new Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="">
             </div>
-
+            <br>
             <div class="form-group col-md-6">
-                <label for="checkPassword">Password</label>
+                <label for="checkPassword">Re-enter new Password</label>
                 <input type="password" class="form-control" id="checkPassword" name="checkPassword" placeholder="">
             </div>
 

@@ -35,8 +35,7 @@ function division_course(){
                 select * from application, recruiter, taken where
                 application.university_name = recruiter.university_name
                 AND recruiter.login_username = ?
-                AND application.student_id = student.id
-                AND taken.student_id = student.id
+                AND taken.student_id = application.student_id
                 AND taken.course_number = c.number
                 AND taken.course_department = c.department))";
     $stmt = $mysqli->prepare($sql);
