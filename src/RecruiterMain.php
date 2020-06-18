@@ -132,6 +132,7 @@ $result = $mysqli->query($join) -> fetch_assoc();
 </nav>
 
 <div class="form">
+    <h2>  </h2>
     <h2>---Recruiter Info---</h2>
     <span>Recruiter Name:</span> <?php echo $result['name']; ?>
     <br>
@@ -183,6 +184,8 @@ $result = $mysqli->query($join) -> fetch_assoc();
     <br>
     <br>
     The course taken by all the student who applied to the university:
+    <br>
+    <br>
     <?php division_course()?>
     <br>
     <br>

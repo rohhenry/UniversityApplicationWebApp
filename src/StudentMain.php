@@ -196,6 +196,7 @@ function displayCountGroupBy(){
 <body>
 
 <div class="form">
+    <h2>  </h2>
     <h2>---Student Info---</h2>
     <span>Student Name:</span> <?php echo $result['name']; ?>
     <br>
