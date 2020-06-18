@@ -36,7 +36,11 @@ INSERT INTO
 ('002','ENGL', 'Kafka Analysis'),
 ('003','MUSC','Advanced Scales'),
 ('004','PHYS','Quantum Mechanics'),
-('005','CHEM','Orbitals');
+('005','CHEM','Orbitals'),
+('110','CPSC','RACKET'),
+('304','CPSC','DATABASE'),
+('302','MATH','PROBABILITY'),
+('302','STAT','STAT PROB');
 
 
 INSERT INTO 
@@ -71,7 +75,7 @@ VALUES
 INSERT INTO
 	Local_Address(contact_info_address, postal_code)
 VALUES
-	('street1', 'ZZZ ZZ1'),
+('street1', 'ZZZ ZZ1'),
 ('street2', 'ZZZ ZZ2'),
 ('street3', 'ZZZ ZZ3'),
 ('street4', 'ZZZ ZZ4'),
