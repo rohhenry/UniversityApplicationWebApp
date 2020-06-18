@@ -156,8 +156,10 @@
 </nav>
 
 <body>
-<?php displayCoursesTaken()?>
 <br>
+Course Taken:
+<br>
+<?php displayCoursesTaken()?>
 <br>
 <form method="post">
     <select name="course">

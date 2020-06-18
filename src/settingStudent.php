@@ -92,8 +92,10 @@ if(isset($_POST['submit'])){
     </div>
 </nav>
 <body>
+<h2></h2>
 
 <div class = "register_box">
+
     <form method="post">
         <div class="form-row">
 

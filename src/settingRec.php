@@ -97,6 +97,7 @@ if(isset($_POST['submit'])){
 <body>
 
 <div class = "register_box">
+    <h2> </h2>
     <form method="post">
         <div class="form-row">
 

@@ -92,6 +92,24 @@
     <link rel="stylesheet" type="text/css" href="css/ReviewApplication.css">
 </head>
 
+<style>
+
+    body {
+        background-image: url('DataScientist.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    .form {
+        width:400px;
+        float:left;
+        background-color:ivory;
+        font-family:'Droid Serif',serif;
+        padding-left:40px
+    }
+</style>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Recruiter</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -122,7 +140,8 @@
 
 <body>
 <div class="container">
-<div class="center">
+<div class="absolute">
+<br>
 Student Info: <br>
 <?php displayStudentInfo()?>
 Courses Taken: <br>
