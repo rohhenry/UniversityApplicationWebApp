@@ -36,10 +36,10 @@ INSERT INTO
 ('002','ENGL', 'Kafka Analysis'),
 ('003','MUSC','Advanced Scales'),
 ('004','PHYS','Quantum Mechanics'),
-('005','CHEM','Orbitals');
-('110','CPSC','RACKET');
-('304','CPSC','DATABASE');
-('302','MATH','PROBABILITY');
+('005','CHEM','Orbitals'),
+('110','CPSC','RACKET'),
+('304','CPSC','DATABASE'),
+('302','MATH','PROBABILITY'),
 ('302','STAT','STAT PROB');
 
 
