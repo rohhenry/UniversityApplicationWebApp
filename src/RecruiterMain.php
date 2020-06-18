@@ -97,11 +97,12 @@ $result = $mysqli->query($join) -> fetch_assoc();
     }
 
     .form {
-        width:400px;
-        float:left;
+        padding:10px;
+        height: 100%;
         background-color:ivory;
-        font-family:'Droid Serif',serif;
-        padding-left:40px
+        border-radius: 10px;
+        border: 2px solid #040004;
+        text-align: center;
     }
 </style>
 
@@ -131,70 +132,78 @@ $result = $mysqli->query($join) -> fetch_assoc();
     </div>
 </nav>
 
-<div class="form">
-    <h2>  </h2>
-    <h2>---Recruiter Info---</h2>
-    <span>Recruiter Name:</span> <?php echo $result['name']; ?>
-    <br>
-    <br>
-    <span>Affiliated University:</span> <?php echo $result['university_name']; ?>
-    <br>
-    <br>
-    <span>E-mail:</span> <?php echo $result['contact_info_email']; ?>
-    <br>
-    <br>
-    <span>Recruiter ID:</span> <?php echo $result['id']; ?>
-    <br>
-    <br>
-    <span>Recruiter username:</span> <?php echo $result['login_username']; ?>
-    <br>
-    <br>
-    Applications To Review:
-    <br>
-    <br>
-    <?php displayApplicationsToReview()?>
-    <br>
-    <br>
-    <br>
-    Offers Given:
-    <br>
-    <br>
-    <?php displayApplications("accepted", "pending")?>
-    <br>
-    <br>
-    <br>
-    Rejected Applications:
-    <br>
-    <br>
-    <?php displayApplications("rejected", "pending")?>
-    <br>
-    <br>
-    <br>
-    Accepted Offers:
-    <br>
-    <br>
-    <?php displayApplications("accepted", "accepted")?>
-    <br>
-    <br>
-    <br>
-    Rejected Offers:
-    <br>
-    <br>
-    <?php displayApplications("accepted", "rejected")?>
-    <br>
-    <br>
-    The course taken by all the student who applied to the university:
-    <br>
-    <br>
-    <?php division_course()?>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+<body>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form">
+                <h2>  </h2>
+                <h2>Recruiter Info</h2>
+                <span>Recruiter Name:</span> <?php echo $result['name']; ?>
+                <br>
+                <br>
+                <span>Affiliated University:</span> <?php echo $result['university_name']; ?>
+                <br>
+                <br>
+                <span>E-mail:</span> <?php echo $result['contact_info_email']; ?>
+                <br>
+                <br>
+                <span>Recruiter ID:</span> <?php echo $result['id']; ?>
+                <br>
+                <br>
+                <span>Recruiter username:</span> <?php echo $result['login_username']; ?>
+                <br>
+                <br>
+                <h4>The Course Information</h4>
+                The course taken by all the student who applied to the university:
+                <br>
+                <?php division_course()?>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form">
+                Applications To Review:
+                <br>
+                <br>
+                <?php displayApplicationsToReview()?>
+                <br>
+                <br>
+                <br>
+                Offers Given:
+                <br>
+                <br>
+                <?php displayApplications("accepted", "pending")?>
+                <br>
+                <br>
+                <br>
+                Rejected Applications:
+                <br>
+                <br>
+                <?php displayApplications("rejected", "pending")?>
+                <br>
+                <br>
+                <br>
+                Accepted Offers:
+                <br>
+                <br>
+                <?php displayApplications("accepted", "accepted")?>
+                <br>
+                <br>
+                <br>
+                Rejected Offers:
+                <br>
+                <br>
+                <?php displayApplications("accepted", "rejected")?>
+                <br>
+                <br>
 
+            </div>
+        </div>
+    </div>
 </div>
+</body>
 
 
 </html>
